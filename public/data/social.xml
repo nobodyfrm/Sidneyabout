@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<socialMedia>
+  <profile>
+    <platform>Twitter / X</platform>
+    <handle>@SidneyFurdog</handle>
+    <url>https://twitter.com/SidneyFurdog</url>
+    <icon>twitter</icon>
+    <color>#000000</color>
+    <description>Meine Tweets und Furry-Updates</description>
+  </profile>
+  <profile>
+    <platform>Telegram</platform>
+    <handle>@SidneyFurdog</handle>
+    <url>https://t.me/SidneyFurdog</url>
+    <icon>telegram</icon>
+    <color>#2AABEE</color>
+    <description>Direktnachrichten und Community-Gruppen</description>
+  </profile>
+  <profile>
+    <platform>FurAffinity</platform>
+    <handle>SidneyFurdog</handle>
+    <url>https://www.furaffinity.net/user/SidneyFurdog</url>
+    <icon>furaffinity</icon>
+    <color>#FAAF3A</color>
+    <description>Furry-Kunst und Community-Content</description>
+  </profile>
+  <profile>
+    <platform>Instagram</platform>
+    <handle>@SidneyFurdog</handle>
+    <url>https://instagram.com/SidneyFurdog</url>
+    <icon>instagram</icon>
+    <color>#E1306C</color>
+    <description>Fotos von Events und Abenteuern</description>
+  </profile>
+  <profile>
+    <platform>Bluesky</platform>
+    <handle>@sidneyfurdog.bsky.social</handle>
+    <url>https://bsky.app/profile/sidneyfurdog.bsky.social</url>
+    <icon>bluesky</icon>
+    <color>#0085FF</color>
+    <description>Meine Gedanken auf Bluesky</description>
+  </profile>
+</socialMedia>

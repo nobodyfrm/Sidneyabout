@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+  <event id="1">
+    <date>2025-06-19</date>
+    <dateDisplay>19.06.2025</dateDisplay>
+    <name>Berliner Furry-Sommerfest</name>
+    <type>Festival</type>
+    <location>Abenteuerzentrum Berlin gGmbH, Eichhörnchensteig 3, 14193 Berlin</location>
+    <city>Berlin</city>
+    <remark>Mein allererstes Furry-Event! Der Beginn meiner Zeit als Furry — ein unvergesslicher Sommer 2025.</remark>
+    <isFirst>true</isFirst>
+  </event>
+  <event id="2">
+    <date>2025-09-27</date>
+    <dateDisplay>27.09.2025</dateDisplay>
+    <name>Suitwalk im Schlosspark Sanssouci</name>
+    <type>Walk</type>
+    <location>Schlosspark Sanssouci, Potsdam</location>
+    <city>Potsdam</city>
+    <remark>Wunderschöner Spaziergang durch den historischen Schlosspark Sanssouci in Potsdam.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="3">
+    <date>2025-10-13</date>
+    <dateDisplay>13.10.2025</dateDisplay>
+    <name>Walk durch das Festival of Lights</name>
+    <type>Walk</type>
+    <location>Berliner Innenstadt</location>
+    <city>Berlin</city>
+    <remark>Nachtspaziergang durch die farbenprächtigen Lichtinstallationen des Berliner Festival of Lights.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="4">
+    <date>2025-10-18</date>
+    <dateDisplay>18.10.2025</dateDisplay>
+    <name>Walk Treptower Herbst</name>
+    <type>Walk</type>
+    <location>Treptower Park, Berlin</location>
+    <city>Berlin</city>
+    <remark>Herbstspaziergang durch den wunderschönen Treptower Park mit goldenen Blättern.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="5">
+    <date>2025-10-26</date>
+    <dateDisplay>26.10.2025</dateDisplay>
+    <name>Halloween-Walk</name>
+    <type>Walk</type>
+    <location>Volkspark Friedrichshain, Berlin</location>
+    <city>Berlin</city>
+    <remark>Gruseliger Halloween-Spaziergang im Volkspark Friedrichshain — perfektes Wetter für die Furrys!</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="6">
+    <date>2025-11-01</date>
+    <dateDisplay>01.11.2025</dateDisplay>
+    <name>Respawn Halloween</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Halloween-Party bei Respawn im METRONOM Berlin — Feiern mit der ganzen Furry-Community.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="7">
+    <date>2025-11-08</date>
+    <dateDisplay>08.11.2025</dateDisplay>
+    <name>Herbstwalk</name>
+    <type>Walk</type>
+    <location>Britzer Garten, Berlin</location>
+    <city>Berlin</city>
+    <remark>Entspannter Herbstspaziergang durch den wunderschönen Britzer Garten.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="8">
+    <date>2025-11-16</date>
+    <dateDisplay>16.11.2025</dateDisplay>
+    <name>Furry-Bowling 3</name>
+    <type>Social</type>
+    <location>KANGAROO'S LAND Bowling Berlin</location>
+    <city>Berlin</city>
+    <remark>Bowlen mit der Furry-Community — dritte Runde, und Spaß garantiert!</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="9">
+    <date>2025-12-20</date>
+    <dateDisplay>20.12.2025</dateDisplay>
+    <name>Respawn Weihnachten</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Weihnachtliche Feier bei Respawn im METRONOM Berlin mit der Furry-Familie.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="10">
+    <date>2026-01-03</date>
+    <dateDisplay>03.01.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Ins neue Jahr mit der Furry-Community feiern — Party bei Respawn im METRONOM.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="11">
+    <date>2026-01-18</date>
+    <dateDisplay>18.01.2026</dateDisplay>
+    <name>Furry-Bowling 4</name>
+    <type>Social</type>
+    <location>KANGAROO'S LAND Bowling Berlin</location>
+    <city>Berlin</city>
+    <remark>Vierte Bowling-Ausgabe mit der Furry-Community — mittlerweile eine echte Tradition!</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="12">
+    <date>2026-02-16</date>
+    <dateDisplay>16.02.2026 – 23.02.2026</dateDisplay>
+    <name>NFC – Nordic Fuzz Con</name>
+    <type>Convention</type>
+    <location>Malmö, Schweden</location>
+    <city>Malmö</city>
+    <remark>Meine erste internationale Furry-Convention! Eine ganze Woche Furry-Magie in Skandinavien.</remark>
+    <isFirst>false</isFirst>
+  </event>
+  <event id="13">
+    <date>2026-03-01</date>
+    <dateDisplay>01.03.2026</dateDisplay>
+    <name>Anti-PCD Walk (NFC-Nachklang)</name>
+    <type>Walk</type>
+    <location>Brandenburger Tor, Berlin</location>
+    <city>Berlin</city>
+    <remark>Post-Con-Depression gemeinsam bekämpfen — Walk am Brandenburger Tor nach der NFC.</remark>
+    <isFirst>false</isFirst>
+  </event>
+</events>

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+/* ─── Light Mode (default) ──────────────────────────── */
+:root {
+  --font-nunito: 'Nunito', system-ui, sans-serif;
+
+  /* Green palette */
+  --fur-green:        #16A34A;
+  --fur-green-light:  #4ADE80;
+  --fur-green-2:      #059669;
+  --fur-lime:         #65A30D;
+
+  /* Surfaces */
+  --fur-bg:           #F0FDF4;
+  --fur-bg-alt:       #DCFCE7;
+  --fur-card:         #FFFFFF;
+  --fur-card-hover:   #F7FEF9;
+
+  /* Text */
+  --fur-text:         #14532D;
+  --fur-text-sub:     #166534;
+  --fur-muted:        #4B7A5B;
+
+  /* Borders */
+  --fur-border:       rgba(22, 163, 74, 0.18);
+  --fur-border-strong:rgba(22, 163, 74, 0.35);
+
+  /* Gradient */
+  --fur-grad:         linear-gradient(135deg, #16A34A, #059669);
+  --fur-grad-hero:    linear-gradient(160deg, #f0fdf4 0%, #dcfce7 50%, #ecfdf5 100%);
+
+  /* Shadow color for dark-tinted shadows */
+  --fur-shadow:       rgba(22, 163, 74, 0.12);
+
+  /* Nav BG when scrolled */
+  --fur-nav-bg:       rgba(255,255,255,0.95);
+  --fur-nav-border:   rgba(22,163,74,0.1);
+
+  /* Footer */
+  --fur-footer-bg:    linear-gradient(135deg, #052e16 0%, #14532d 100%);
+  --fur-footer-text:  rgba(255,255,255,0.4);
+}
+
+/* ─── Dark Mode ─────────────────────────────────────── */
+.dark {
+  --fur-green:        #4ADE80;
+  --fur-green-light:  #86EFAC;
+  --fur-green-2:      #34D399;
+  --fur-lime:         #A3E635;
+
+  --fur-bg:           #071A0D;
+  --fur-bg-alt:       #0A2010;
+  --fur-card:         #0D2914;
+  --fur-card-hover:   #122E19;
+
+  --fur-text:         #DCFCE7;
+  --fur-text-sub:     #BBF7D0;
+  --fur-muted:        #6EE7B7;
+
+  --fur-border:       rgba(74, 222, 128, 0.12);
+  --fur-border-strong:rgba(74, 222, 128, 0.28);
+
+  --fur-grad:         linear-gradient(135deg, #4ADE80, #34D399);
+  --fur-grad-hero:    linear-gradient(160deg, #071A0D 0%, #0A2010 50%, #071A0D 100%);
+
+  --fur-shadow:       rgba(0, 0, 0, 0.4);
+
+  --fur-nav-bg:       rgba(7, 26, 13, 0.95);
+  --fur-nav-border:   rgba(74,222,128,0.1);
+
+  --fur-footer-bg:    linear-gradient(135deg, #030D06 0%, #071A0D 100%);
+  --fur-footer-text:  rgba(255,255,255,0.35);
+}
+
+body {
+  font-family: var(--font-nunito);
+  background-color: var(--fur-bg);
+  color: var(--fur-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
