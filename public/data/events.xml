@@ -9,6 +9,7 @@
     <city>Berlin</city>
     <remark>Mein allererstes Furry-Event! Der Beginn meiner Zeit als Furry — ein unvergesslicher Sommer 2025.</remark>
     <isFirst>true</isFirst>
+    <firstType>event</firstType>
   </event>
   <event id="2">
     <date>2025-09-27</date>
@@ -118,7 +119,8 @@
     <location>Malmö, Schweden</location>
     <city>Malmö</city>
     <remark>Meine erste internationale Furry-Convention! Eine ganze Woche Furry-Magie in Skandinavien.</remark>
-    <isFirst>false</isFirst>
+    <isFirst>true</isFirst>
+    <firstType>convention</firstType>
   </event>
   <event id="13">
     <date>2026-03-01</date>
@@ -129,5 +131,93 @@
     <city>Berlin</city>
     <remark>Post-Con-Depression gemeinsam bekämpfen — Walk am Brandenburger Tor nach der NFC.</remark>
     <isFirst>false</isFirst>
+  </event>
+  <event id="14">
+    <date>2026-04-11</date>
+    <dateDisplay>11.04.2026 – 12.04.2026</dateDisplay>
+    <name>Kirschblütenfest</name>
+    <type>Festival</type>
+    <location>Gärten der Welt, Berlin</location>
+    <city>Berlin</city>
+    <remark>Spaziergang durch die wunderschönen Kirschblüten in den Gärten der Welt.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="15">
+    <date>2026-04-18</date>
+    <dateDisplay>18.04.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="16">
+    <date>2026-05-23</date>
+    <dateDisplay>23.05.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="17">
+    <date>2026-06-20</date>
+    <dateDisplay>20.06.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="18">
+    <date>2026-07-11</date>
+    <dateDisplay>11.07.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="19">
+    <date>2026-08-15</date>
+    <dateDisplay>15.08.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="20">
+    <date>2026-08-17</date>
+    <dateDisplay>17.08.2026 – 24.08.2026</dateDisplay>
+    <name>Eurofurence</name>
+    <type>Convention</type>
+    <location>CCH Hamburg, Hamburg</location>
+    <city>Hamburg</city>
+    <remark>Die größte Furry-Convention Europas – eine Woche voller unvergesslicher Erlebnisse!</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
+  <event id="21">
+    <date>2026-09-12</date>
+    <dateDisplay>12.09.2026</dateDisplay>
+    <name>Respawn Geektoberfest Edition</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Besondere Geektoberfest Edition der Respawn Party.</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
   </event>
 </events>

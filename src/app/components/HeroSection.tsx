@@ -1,33 +1,71 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { MapPin, Calendar, Star, PawPrint } from "lucide-react";
-import fursonaImg from "figma:asset/3b19625cfe54fb82cd432838d05ad1f95c64041d.png";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Event } from "./EventsSection";
 
 interface HeroProps {
   eventCount: number;
+  events?: Event[];
 }
 
 const PAWS = [
-  { top: "10%", left: "5%",  size: 28, rotate: -20, opacity: 0.1 },
-  { top: "20%", right: "8%", size: 20, rotate:  40, opacity: 0.08 },
-  { top: "55%", left: "3%",  size: 24, rotate:  15, opacity: 0.07 },
-  { top: "70%", right: "5%", size: 32, rotate: -35, opacity: 0.08 },
-  { top: "85%", left: "12%", size: 18, rotate:   5, opacity: 0.06 },
-  { top: "40%", right: "15%",size: 22, rotate:  60, opacity: 0.07 },
-  { top: "30%", left: "20%", size: 16, rotate: -10, opacity: 0.05 },
+  { top: "10%", left: "5%", size: 28, rotate: -20, opacity: 0.12 },
+  { top: "20%", right: "8%", size: 20, rotate: 40, opacity: 0.1 },
+  { top: "55%", left: "3%", size: 24, rotate: 15, opacity: 0.08 },
+  { top: "70%", right: "5%", size: 32, rotate: -35, opacity: 0.1 },
+  { top: "85%", left: "12%", size: 18, rotate: 5, opacity: 0.07 },
+  { top: "40%", right: "15%", size: 22, rotate: 60, opacity: 0.08 },
 ];
 
-export function HeroSection({ eventCount }: HeroProps) {
+export function HeroSection({ eventCount, events }: HeroProps) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
   }, []);
 
+  const { firstEvent, countries, conventions } = useMemo(() => {
+    if (!events || events.length === 0) {
+      return {
+        firstEvent: "Berliner Furry-Sommerfest",
+        countries: 2,
+        conventions: 1,
+      };
+    }
+
+    // Get first event by filtering events with firstType="event"
+    const firstEventItem = events.find(e => e.firstType === "event");
+    const firstEventName = firstEventItem ? firstEventItem.name : events[0]?.name || "Berliner Furry-Sommerfest";
+
+    // Count unique countries
+    const uniqueCities = new Set(events.map(e => e.city));
+    const countryNames = new Set<string>();
+    uniqueCities.forEach(city => {
+      if (city.includes("Malmö") || city.includes("Schweden")) {
+        countryNames.add("Schweden");
+      } else {
+        countryNames.add("Deutschland");
+      }
+    });
+
+    // Count conventions
+    const conventionCount = events.filter(e => e.type === "Convention").length;
+
+    return {
+      firstEvent: firstEventName,
+      countries: countryNames.size,
+      conventions: conventionCount,
+    };
+  }, [events]);
+
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-14 transition-colors duration-300"
-      style={{ background: "var(--fur-grad-hero)" }}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-14"
+      style={{
+        background:
+          "linear-gradient(160deg, #fff8f0 0%, #fdf0ff 50%, #eef8ff 100%)",
+      }}
     >
       {/* Decorative paw prints */}
       {PAWS.map((p, i) => (
@@ -47,60 +85,45 @@ export function HeroSection({ eventCount }: HeroProps) {
         </div>
       ))}
 
-      {/* Glow blobs */}
+      {/* Gradient blob */}
       <div
-        className="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-20 pointer-events-none transition-all duration-300"
-        style={{ background: "var(--fur-green)" }}
+        className="absolute -top-20 -right-20 w-72 h-72 rounded-full blur-3xl opacity-20 pointer-events-none"
+        style={{ background: "var(--fur-orange)" }}
       />
       <div
-        className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full blur-3xl opacity-15 pointer-events-none transition-all duration-300"
-        style={{ background: "var(--fur-green-2)" }}
-      />
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none"
-        style={{ background: "var(--fur-lime)" }}
+        className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-15 pointer-events-none"
+        style={{ background: "var(--fur-purple)" }}
       />
 
       <div className="relative z-10 max-w-2xl w-full px-4 py-12 flex flex-col items-center text-center">
-
-        {/* ── Avatar ── */}
+        {/* Avatar */}
         <div
           className={`mb-6 transition-all duration-700 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <div className="relative inline-block">
-            {/* Outer glow ring */}
             <div
-              className="absolute -inset-1.5 rounded-3xl blur-md opacity-50"
-              style={{ background: "var(--fur-grad)" }}
-            />
-            {/* Image frame */}
-            <div
-              className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-3xl overflow-hidden shadow-2xl"
+              className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl shadow-xl flex items-center justify-center text-6xl sm:text-7xl"
               style={{
-                border: "3px solid var(--fur-green)",
-                boxShadow: "0 0 0 6px var(--fur-border-strong), 0 20px 40px var(--fur-shadow)",
+                background:
+                  "linear-gradient(135deg, #FFD166, #FF8C42, #D95F8B, #6B4FA0)",
               }}
             >
-              <img
-                src={fursonaImg}
-                alt="Sidney Furdog – mein Fursona"
-                className="w-full h-full object-cover object-center"
-                style={{ imageRendering: "crisp-edges" }}
-              />
+              🐺
             </div>
-            {/* Badge */}
             <span
-              className="absolute -bottom-2 -right-2 w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-lg"
-              style={{ background: "var(--fur-grad)" }}
+              className="absolute -bottom-2 -right-2 w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md text-sm"
+              style={{
+                background: "linear-gradient(135deg, var(--fur-orange), var(--fur-purple))",
+              }}
             >
               <PawPrint size={16} />
             </span>
           </div>
         </div>
 
-        {/* ── Name + intro ── */}
+        {/* Name + intro */}
         <div
           className={`transition-all duration-700 delay-100 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -109,9 +132,9 @@ export function HeroSection({ eventCount }: HeroProps) {
           <div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 border"
             style={{
-              background: "var(--fur-border)",
-              borderColor: "var(--fur-border-strong)",
-              color: "var(--fur-green)",
+              background: "rgba(232, 123, 45, 0.1)",
+              borderColor: "rgba(232, 123, 45, 0.3)",
+              color: "var(--fur-orange)",
             }}
           >
             <span>🐾</span>
@@ -122,7 +145,7 @@ export function HeroSection({ eventCount }: HeroProps) {
             className="text-4xl sm:text-5xl mb-2"
             style={{
               fontWeight: 900,
-              background: "var(--fur-grad)",
+              background: "linear-gradient(135deg, var(--fur-orange), var(--fur-purple))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -132,9 +155,9 @@ export function HeroSection({ eventCount }: HeroProps) {
           </h1>
           <p
             className="text-lg sm:text-xl mb-1"
-            style={{ color: "var(--fur-text-sub)", fontWeight: 700 }}
+            style={{ color: "var(--fur-muted)", fontWeight: 600 }}
           >
-            Hallo, ich bin Sidney! 👋
+            Hallo, ich bin Sidney!
           </p>
           <p
             className="text-sm sm:text-base max-w-md mx-auto mb-8"
@@ -146,51 +169,54 @@ export function HeroSection({ eventCount }: HeroProps) {
           </p>
         </div>
 
-        {/* ── Info chips ── */}
+        {/* Info chips */}
         <div
-          className={`flex flex-wrap justify-center gap-2 mb-10 transition-all duration-700 delay-200 ${
+          className={`flex flex-wrap justify-center gap-3 mb-10 transition-all duration-700 delay-200 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <InfoChip icon={<MapPin size={13} />} label="Berlin, Deutschland" />
-          <InfoChip icon={<Calendar size={13} />} label="Dabei seit: Sommer 2025" />
-          <InfoChip icon={<Star size={13} />} label="Erstes Event: Berliner Furry-Sommerfest" />
+          <InfoChip icon={<MapPin size={14} />} label="Berlin, Deutschland" />
+          <InfoChip icon={<Calendar size={14} />} label="Dabei seit: Sommer 2025" />
+          <InfoChip icon={<Star size={14} />} label={`Erstes Event: ${firstEvent}`} />
         </div>
 
-        {/* ── Stats ── */}
+        {/* Stats */}
         <div
-          className={`grid grid-cols-3 gap-3 w-full max-w-md transition-all duration-700 delay-300 ${
+          className={`grid grid-cols-3 gap-4 w-full max-w-md transition-all duration-700 delay-300 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <StatCard emoji="🐾" value={eventCount.toString()} label="Events" />
-          <StatCard emoji="🌍" value="2" label="Länder" />
-          <StatCard emoji="⭐" value="1" label="Convention" />
+          <StatCard emoji="🌍" value={countries.toString()} label="Länder" />
+          <StatCard emoji="⭐" value={conventions.toString()} label="Convention" />
         </div>
 
-        {/* ── CTA buttons ── */}
+        {/* CTA */}
         <div
           className={`mt-10 flex flex-col sm:flex-row gap-3 transition-all duration-700 delay-400 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <button
-            onClick={() => document.querySelector("#events")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-7 py-3 rounded-2xl text-white shadow-lg hover:opacity-90 transition-all text-sm"
-            style={{ background: "var(--fur-grad)", boxShadow: "0 4px 16px var(--fur-shadow)" }}
+            onClick={() => {
+              document.querySelector("#events")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="px-6 py-3 rounded-2xl text-white shadow-lg hover:opacity-90 transition-all text-sm"
+            style={{
+              background: "linear-gradient(135deg, var(--fur-orange), var(--fur-purple))",
+            }}
           >
             🐾 Alle Events ansehen
           </button>
           <button
-            onClick={() => document.querySelector("#social")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-7 py-3 rounded-2xl text-sm border transition-all"
-            style={{
-              borderColor: "var(--fur-border-strong)",
-              color: "var(--fur-green)",
-              background: "var(--fur-card)",
+            onClick={() => {
+              document.querySelector("#social")?.scrollIntoView({ behavior: "smooth" });
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--fur-border)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--fur-card)")}
+            className="px-6 py-3 rounded-2xl text-sm border hover:bg-orange-50 transition-all"
+            style={{
+              borderColor: "rgba(232, 123, 45, 0.3)",
+              color: "var(--fur-orange)",
+            }}
           >
             Social Media
           </button>
@@ -199,11 +225,11 @@ export function HeroSection({ eventCount }: HeroProps) {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40">
-        <span className="text-xs" style={{ color: "var(--fur-muted)" }}>Scroll</span>
-        <div
-          className="w-5 h-8 rounded-full border-2 flex items-start justify-center p-1"
-          style={{ borderColor: "var(--fur-muted)" }}
-        >
+        <span className="text-xs" style={{ color: "var(--fur-muted)" }}>
+          Scroll
+        </span>
+        <div className="w-5 h-8 rounded-full border-2 flex items-start justify-center p-1"
+          style={{ borderColor: "var(--fur-muted)" }}>
           <div
             className="w-1 h-2 rounded-full animate-bounce"
             style={{ background: "var(--fur-muted)" }}
@@ -217,31 +243,34 @@ export function HeroSection({ eventCount }: HeroProps) {
 function InfoChip({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div
-      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border shadow-sm transition-colors duration-300"
-      style={{
-        background: "var(--fur-card)",
-        borderColor: "var(--fur-border)",
-        color: "var(--fur-muted)",
-      }}
+      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border bg-white shadow-sm"
+      style={{ borderColor: "rgba(0,0,0,0.08)", color: "var(--fur-muted)" }}
     >
-      <span style={{ color: "var(--fur-green)" }}>{icon}</span>
+      <span style={{ color: "var(--fur-orange)" }}>{icon}</span>
       {label}
     </div>
   );
 }
 
-function StatCard({ emoji, value, label }: { emoji: string; value: string; label: string }) {
+function StatCard({
+  emoji,
+  value,
+  label,
+}: {
+  emoji: string;
+  value: string;
+  label: string;
+}) {
   return (
     <div
-      className="rounded-2xl p-4 text-center shadow-sm border transition-colors duration-300"
-      style={{
-        background: "var(--fur-card)",
-        borderColor: "var(--fur-border)",
-        boxShadow: "0 2px 8px var(--fur-shadow)",
-      }}
+      className="bg-white rounded-2xl p-4 shadow-sm border text-center"
+      style={{ borderColor: "rgba(0,0,0,0.06)" }}
     >
       <div className="text-2xl mb-1">{emoji}</div>
-      <div style={{ fontWeight: 800, color: "var(--fur-green)", fontSize: "1.25rem" }}>
+      <div
+        className="text-xl"
+        style={{ fontWeight: 800, color: "var(--fur-orange)" }}
+      >
         {value}
       </div>
       <div className="text-xs" style={{ color: "var(--fur-muted)" }}>

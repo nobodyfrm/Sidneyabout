@@ -1,0 +1,36 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD166;stop-opacity:1" />
+      <stop offset="33%" style="stop-color:#FF8C42;stop-opacity:1" />
+      <stop offset="66%" style="stop-color:#D95F8B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B4FA0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="pawGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E87B2D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B4FA0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="url(#bg)" />
+  
+  <!-- Paw print -->
+  <g fill="white" opacity="0.95">
+    <!-- Main pad -->
+    <ellipse cx="256" cy="300" rx="85" ry="95" />
+    
+    <!-- Top left toe -->
+    <ellipse cx="180" cy="200" rx="45" ry="55" transform="rotate(-15 180 200)" />
+    
+    <!-- Top center toe -->
+    <ellipse cx="256" cy="180" rx="45" ry="58" />
+    
+    <!-- Top right toe -->
+    <ellipse cx="332" cy="200" rx="45" ry="55" transform="rotate(15 332 200)" />
+    
+    <!-- Right toe -->
+    <ellipse cx="360" cy="260" rx="38" ry="48" transform="rotate(25 360 260)" />
+  </g>
+</svg>

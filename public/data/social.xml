@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <socialMedia>
   <profile>
-    <platform>Twitter / X</platform>
-    <handle>@SidneyFurdog</handle>
-    <url>https://twitter.com/SidneyFurdog</url>
-    <icon>twitter</icon>
-    <color>#000000</color>
-    <description>Meine Tweets und Furry-Updates</description>
-  </profile>
-  <profile>
     <platform>Telegram</platform>
-    <handle>@SidneyFurdog</handle>
-    <url>https://t.me/SidneyFurdog</url>
+    <handle>@sidney_furdog</handle>
+    <url>https://t.me/sidney_furdog</url>
     <icon>telegram</icon>
     <color>#2AABEE</color>
     <description>Direktnachrichten und Community-Gruppen</description>
   </profile>
   <profile>
-    <platform>FurAffinity</platform>
-    <handle>SidneyFurdog</handle>
-    <url>https://www.furaffinity.net/user/SidneyFurdog</url>
-    <icon>furaffinity</icon>
-    <color>#FAAF3A</color>
-    <description>Furry-Kunst und Community-Content</description>
+    <platform>Twitter / X</platform>
+    <handle>@sidney_furdog</handle>
+    <url>https://twitter.com/sidney_furdog</url>
+    <icon>twitter</icon>
+    <color>#000000</color>
+    <description>Meine Tweets und Furry-Updates</description>
   </profile>
   <profile>
     <platform>Instagram</platform>
-    <handle>@SidneyFurdog</handle>
-    <url>https://instagram.com/SidneyFurdog</url>
+    <handle>sidney_furdog</handle>
+    <url>https://instagram.com/sidney_furdog</url>
     <icon>instagram</icon>
     <color>#E1306C</color>
     <description>Fotos von Events und Abenteuern</description>
   </profile>
   <profile>
-    <platform>Bluesky</platform>
-    <handle>@sidneyfurdog.bsky.social</handle>
-    <url>https://bsky.app/profile/sidneyfurdog.bsky.social</url>
-    <icon>bluesky</icon>
-    <color>#0085FF</color>
-    <description>Meine Gedanken auf Bluesky</description>
+    <platform>Discord</platform>
+    <handle>sidney.furdog</handle>
+    <url>https://discord.com/users/sidney.furdog</url>
+    <icon>discord</icon>
+    <color>#5865F2</color>
+    <description>Gaming und Community-Chat</description>
+  </profile>
+  <profile>
+    <platform>TikTok</platform>
+    <handle>@sidney.furdog</handle>
+    <url>https://tiktok.com/@sidney.furdog</url>
+    <icon>tiktok</icon>
+    <color>#000000</color>
+    <description>Furry-Videos und Content</description>
+  </profile>
+  <profile>
+    <platform>Barq</platform>
+    <handle>@sidney_furdog</handle>
+    <url>https://barq.social/@sidney_furdog</url>
+    <icon>barq</icon>
+    <color>#FF6B35</color>
+    <description>Furry-Social-Network</description>
   </profile>
 </socialMedia>
