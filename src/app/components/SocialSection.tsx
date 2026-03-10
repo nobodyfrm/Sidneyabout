@@ -63,23 +63,20 @@ export function SocialSection({ profiles }: Props) {
     <section
       id="social"
       className="py-16 px-4"
-      style={{ background: "linear-gradient(160deg, #fdf0ff 0%, #fff8f0 100%)" }}
+      style={{ background: "var(--color-bg)" }}
     >
-      <div className="max-w-3xl mx-auto">
+      <div className="mx-auto" style={{ maxWidth: "var(--max-content-width)" }}>
         <div className="text-center mb-10">
           <h2
             className="text-3xl mb-2"
             style={{
               fontWeight: 800,
-              background: "linear-gradient(135deg, var(--fur-purple), var(--fur-orange))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "var(--color-primary)",
             }}
           >
             🌐 Social Media
           </h2>
-          <p style={{ color: "var(--fur-muted)" }} className="text-sm">
+          <p style={{ color: "var(--color-text-muted)" }} className="text-sm">
             Vernetz dich mit mir auf diesen Plattformen
           </p>
         </div>
@@ -91,8 +88,11 @@ export function SocialSection({ profiles }: Props) {
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white rounded-2xl border p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
-              style={{ borderColor: "rgba(0,0,0,0.07)" }}
+              className="group relative rounded-2xl border p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
+              style={{ 
+                backgroundColor: "var(--color-card-bg)", 
+                borderColor: "var(--color-border)" 
+              }}
             >
               {/* Icon */}
               <div
@@ -109,7 +109,7 @@ export function SocialSection({ profiles }: Props) {
                 <div className="flex items-center gap-1.5 mb-0.5">
                   <span
                     className="text-sm"
-                    style={{ fontWeight: 700, color: "var(--fur-text)" }}
+                    style={{ fontWeight: 700, color: "var(--color-text)" }}
                   >
                     {p.platform}
                   </span>
@@ -120,7 +120,7 @@ export function SocialSection({ profiles }: Props) {
                 >
                   {p.handle}
                 </div>
-                <div className="text-xs" style={{ color: "var(--fur-muted)" }}>
+                <div className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                   {p.description}
                 </div>
               </div>
@@ -129,7 +129,7 @@ export function SocialSection({ profiles }: Props) {
               <ExternalLink
                 size={14}
                 className="flex-shrink-0 opacity-30 group-hover:opacity-70 transition-opacity"
-                style={{ color: "var(--fur-muted)" }}
+                style={{ color: "var(--color-text-muted)" }}
               />
 
               {/* Hover glow */}
@@ -141,7 +141,7 @@ export function SocialSection({ profiles }: Props) {
           ))}
         </div>
 
-        <p className="text-center text-xs mt-8" style={{ color: "var(--fur-muted)" }}>
+        <p className="text-center text-xs mt-8" style={{ color: "var(--color-text-muted)" }}>
           💡 Die Links führen zu meinen offiziellen Profilen
         </p>
       </div>

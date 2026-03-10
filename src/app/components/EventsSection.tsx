@@ -105,7 +105,7 @@ export function EventsSection({ events }: Props) {
     if (sortField !== field)
       return <span className="opacity-25 text-xs">↕</span>;
     return (
-      <span className="text-xs" style={{ color: "var(--fur-orange)" }}>
+      <span className="text-xs" style={{ color: "var(--color-primary)" }}>
         {sortDir === "asc" ? "↑" : "↓"}
       </span>
     );
@@ -119,25 +119,22 @@ export function EventsSection({ events }: Props) {
   };
 
   return (
-    <section id="events" className="py-16 px-4 bg-white">
-      <div className="max-w-5xl mx-auto">
+    <section id="events" className="py-16 px-4" style={{ backgroundColor: "var(--color-bg-neutral)" }}>
+      <div className="mx-auto" style={{ maxWidth: "var(--max-content-width)" }}>
         {/* Header */}
         <div className="text-center mb-10">
           <h2
             className="text-3xl mb-2"
             style={{
               fontWeight: 800,
-              background: "linear-gradient(135deg, var(--fur-orange), var(--fur-teal))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "var(--color-primary)",
             }}
           >
             🐾 Meine Events
           </h2>
-          <p className="text-sm" style={{ color: "var(--fur-muted)" }}>
+          <p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
             Alle Veranstaltungen seit dem Sommer 2025 &mdash;{" "}
-            <strong style={{ color: "var(--fur-orange)" }}>{events.length}</strong>{" "}
+            <strong style={{ color: "var(--color-primary)" }}>{events.length}</strong>{" "}
             Ereignisse und zählend!
           </p>
         </div>
@@ -146,8 +143,8 @@ export function EventsSection({ events }: Props) {
         <div
           className="rounded-2xl border p-4 mb-5 space-y-4"
           style={{
-            background: "var(--fur-warm-bg)",
-            borderColor: "rgba(0,0,0,0.07)",
+            background: "var(--color-card-bg)",
+            borderColor: "var(--color-border)",
           }}
         >
           {/* Search */}
@@ -155,24 +152,26 @@ export function EventsSection({ events }: Props) {
             <Search
               size={15}
               className="absolute left-3 top-1/2 -translate-y-1/2"
-              style={{ color: "var(--fur-muted)" }}
+              style={{ color: "var(--color-text-muted)" }}
             />
             <input
               type="text"
               placeholder="Suche nach Name, Ort, Typ…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-10 py-2.5 rounded-xl border bg-white text-sm focus:outline-none transition-all"
+              className="w-full pl-9 pr-10 py-2.5 rounded-xl border text-sm focus:outline-none transition-all"
               style={{
-                borderColor: search ? "var(--fur-orange)" : "rgba(0,0,0,0.12)",
-                boxShadow: search ? "0 0 0 2px rgba(232,123,45,0.1)" : "none",
+                backgroundColor: "var(--color-bg)",
+                color: "var(--color-text)",
+                borderColor: search ? "var(--color-primary)" : "var(--color-border)",
+                boxShadow: search ? "0 0 0 2px rgba(46,125,50,0.1)" : "none",
               }}
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded-full hover:bg-gray-100 transition-colors"
-                style={{ color: "var(--fur-muted)" }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded-full transition-colors"
+                style={{ color: "var(--color-text-muted)" }}
               >
                 <X size={13} />
               </button>
@@ -194,8 +193,8 @@ export function EventsSection({ events }: Props) {
                       active
                         ? c
                           ? { background: c.dot, color: "#fff", borderColor: c.dot, fontWeight: 700 }
-                          : { background: "var(--fur-orange)", color: "#fff", borderColor: "var(--fur-orange)", fontWeight: 700 }
-                        : { background: "#fff", color: "var(--fur-muted)", borderColor: "rgba(0,0,0,0.1)" }
+                          : { background: "var(--color-primary)", color: "#fff", borderColor: "var(--color-primary)", fontWeight: 700 }
+                        : { background: "var(--color-bg)", color: "var(--color-text-muted)", borderColor: "var(--color-border)" }
                     }
                   >
                     {t !== "Alle" && TYPE_EMOJI[t] ? `${TYPE_EMOJI[t]} ` : ""}
@@ -215,8 +214,8 @@ export function EventsSection({ events }: Props) {
                 className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs transition-all"
                 style={
                   viewMode === "cards"
-                    ? { background: "#fff", color: "var(--fur-text)", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }
-                    : { color: "var(--fur-muted)" }
+                    ? { background: "var(--color-bg)", color: "var(--color-text)", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }
+                    : { color: "var(--color-text-muted)" }
                 }
               >
                 <LayoutGrid size={13} />
@@ -227,8 +226,8 @@ export function EventsSection({ events }: Props) {
                 className="flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs transition-all"
                 style={
                   viewMode === "table"
-                    ? { background: "#fff", color: "var(--fur-text)", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }
-                    : { color: "var(--fur-muted)" }
+                    ? { background: "var(--color-bg)", color: "var(--color-text)", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }
+                    : { color: "var(--color-text-muted)" }
                 }
               >
                 <List size={13} />
@@ -239,7 +238,7 @@ export function EventsSection({ events }: Props) {
 
           {/* Sort buttons */}
           <div className="flex flex-wrap gap-1.5 items-center">
-            <span className="text-xs" style={{ color: "var(--fur-muted)" }}>
+            <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
               Sortieren:
             </span>
             {(["date", "name", "type", "city"] as SortField[]).map((f) => (
@@ -250,15 +249,15 @@ export function EventsSection({ events }: Props) {
                 style={
                   sortField === f
                     ? {
-                        background: "rgba(232,123,45,0.08)",
-                        borderColor: "var(--fur-orange)",
-                        color: "var(--fur-orange)",
+                        background: "rgba(46,125,50,0.08)",
+                        borderColor: "var(--color-primary)",
+                        color: "var(--color-primary)",
                         fontWeight: 600,
                       }
                     : {
-                        background: "#fff",
-                        borderColor: "rgba(0,0,0,0.1)",
-                        color: "var(--fur-muted)",
+                        background: "var(--color-bg)",
+                        borderColor: "var(--color-border)",
+                        color: "var(--color-text-muted)",
                       }
                 }
               >
@@ -269,7 +268,7 @@ export function EventsSection({ events }: Props) {
         </div>
 
         {/* Results count */}
-        <div className="text-xs mb-4 px-1" style={{ color: "var(--fur-muted)" }}>
+        <div className="text-xs mb-4 px-1" style={{ color: "var(--color-text-muted)" }}>
           {filtered.length === events.length
             ? `${events.length} Events`
             : `${filtered.length} von ${events.length} Events`}
@@ -277,7 +276,7 @@ export function EventsSection({ events }: Props) {
 
         {/* Empty state */}
         {filtered.length === 0 && (
-          <div className="text-center py-16" style={{ color: "var(--fur-muted)" }}>
+          <div className="text-center py-16" style={{ color: "var(--color-text-muted)" }}>
             <div className="text-5xl mb-4">🐾</div>
             <p>Keine Events gefunden.</p>
             <button
@@ -286,7 +285,7 @@ export function EventsSection({ events }: Props) {
                 setFilterType("Alle");
               }}
               className="mt-3 text-sm underline"
-              style={{ color: "var(--fur-orange)" }}
+              style={{ color: "var(--color-primary)" }}
             >
               Filter zurücksetzen
             </button>
@@ -300,7 +299,7 @@ export function EventsSection({ events }: Props) {
               className="text-xl mb-4 px-1"
               style={{
                 fontWeight: 700,
-                color: "var(--fur-text)",
+                color: "var(--color-text)",
               }}
             >
               🔮 Anstehende Events ({futureEvents.length})
@@ -331,7 +330,7 @@ export function EventsSection({ events }: Props) {
               className="text-xl mb-4 px-1"
               style={{
                 fontWeight: 700,
-                color: "var(--fur-text)",
+                color: "var(--color-text)",
               }}
             >
               📜 Vergangene Events ({pastEvents.length})
@@ -401,15 +400,15 @@ function EventsTable({
   return (
     <div
       className="overflow-x-auto rounded-2xl border shadow-sm"
-      style={{ borderColor: "rgba(0,0,0,0.07)" }}
+      style={{ borderColor: "var(--color-border)" }}
     >
-      <table className="w-full text-sm bg-white">
+      <table className="w-full text-sm" style={{ backgroundColor: "var(--color-card-bg)" }}>
         <thead>
           <tr
             className="border-b"
             style={{
-              background: "var(--fur-warm-bg)",
-              borderColor: "rgba(0,0,0,0.07)",
+              background: "var(--color-bg-neutral)",
+              borderColor: "var(--color-border)",
             }}
           >
             {(
@@ -425,7 +424,7 @@ function EventsTable({
                 onClick={() => handleSort(col.field)}
                 className="text-left px-4 py-3 cursor-pointer select-none whitespace-nowrap"
                 style={{
-                  color: sortField === col.field ? "var(--fur-orange)" : "var(--fur-muted)",
+                  color: sortField === col.field ? "var(--color-primary)" : "var(--color-text-muted)",
                   fontWeight: 600,
                   fontSize: "0.75rem",
                 }}
@@ -435,7 +434,7 @@ function EventsTable({
             ))}
             <th
               className="text-left px-4 py-3 hidden lg:table-cell"
-              style={{ color: "var(--fur-muted)", fontWeight: 600, fontSize: "0.75rem" }}
+              style={{ color: "var(--color-text-muted)", fontWeight: 600, fontSize: "0.75rem" }}
             >
               Bemerkung
             </th>
@@ -448,46 +447,46 @@ function EventsTable({
                 key={event.id}
                 className="border-b cursor-pointer transition-colors"
                 style={{
-                  borderColor: "rgba(0,0,0,0.05)",
+                  borderColor: "var(--color-border)",
                   background: event.isFirst
-                    ? "rgba(232,123,45,0.04)"
+                    ? "rgba(46,125,50,0.04)"
                     : i % 2 === 0
-                    ? "#fff"
-                    : "var(--fur-warm-bg)",
+                    ? "var(--color-card-bg)"
+                    : "var(--color-bg-neutral)",
                 }}
                 onClick={() => onToggle(expandedId === event.id ? null : event.id)}
                 onMouseEnter={(e) =>
                   ((e.currentTarget as HTMLTableRowElement).style.background =
-                    "rgba(232,123,45,0.06)")
+                    "rgba(46,125,50,0.06)")
                 }
                 onMouseLeave={(e) =>
                   ((e.currentTarget as HTMLTableRowElement).style.background =
                     event.isFirst
-                      ? "rgba(232,123,45,0.04)"
+                      ? "rgba(46,125,50,0.04)"
                       : i % 2 === 0
-                      ? "#fff"
-                      : "var(--fur-warm-bg)")
+                      ? "var(--color-card-bg)"
+                      : "var(--color-bg-neutral)")
                 }
               >
                 <td
                   className="px-4 py-3 whitespace-nowrap text-xs"
-                  style={{ color: "var(--fur-muted)" }}
+                  style={{ color: "var(--color-text-muted)" }}
                 >
                   {event.dateDisplay}
                 </td>
                 <td className="px-4 py-3">
                   <div
                     className="flex items-center gap-2"
-                    style={{ color: "var(--fur-text)", fontWeight: 500 }}
+                    style={{ color: "var(--color-text)", fontWeight: 500 }}
                   >
                     {event.name}
                     {event.isFirst && (
                       <span
                         className="text-xs px-1.5 py-0.5 rounded-full border"
                         style={{
-                          background: "rgba(232,123,45,0.1)",
-                          color: "var(--fur-orange)",
-                          borderColor: "rgba(232,123,45,0.3)",
+                          background: "rgba(46,125,50,0.1)",
+                          color: "var(--color-primary)",
+                          borderColor: "rgba(46,125,50,0.3)",
                         }}
                       >
                         ⭐ {event.firstType === "convention" ? "Erste Convention" : "Erstes Event"}
@@ -500,13 +499,13 @@ function EventsTable({
                 </td>
                 <td
                   className="px-4 py-3 text-xs"
-                  style={{ color: "var(--fur-muted)" }}
+                  style={{ color: "var(--color-text-muted)" }}
                 >
                   {event.city}
                 </td>
                 <td
                   className="px-4 py-3 text-xs hidden lg:table-cell max-w-xs"
-                  style={{ color: "var(--fur-muted)" }}
+                  style={{ color: "var(--color-text-muted)" }}
                 >
                   <span className="line-clamp-1">{event.remark}</span>
                 </td>
@@ -514,31 +513,31 @@ function EventsTable({
               {expandedId === event.id && (
                 <tr
                   key={`${event.id}-detail`}
-                  style={{ background: "rgba(232,123,45,0.03)" }}
+                  style={{ background: "rgba(46,125,50,0.03)" }}
                 >
                   <td colSpan={5} className="px-4 pb-4 pt-2">
                     <div
                       className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-xl border text-xs"
                       style={{
-                        background: "rgba(232,123,45,0.05)",
-                        borderColor: "rgba(232,123,45,0.15)",
+                        background: "rgba(46,125,50,0.05)",
+                        borderColor: "rgba(46,125,50,0.15)",
                       }}
                     >
                       <div>
-                        <span style={{ color: "var(--fur-muted)" }}>Datum</span>
-                        <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>{event.dateDisplay}</p>
+                        <span style={{ color: "var(--color-text-muted)" }}>Datum</span>
+                        <p style={{ color: "var(--color-text)", fontWeight: 500 }}>{event.dateDisplay}</p>
                       </div>
                       <div>
-                        <span style={{ color: "var(--fur-muted)" }}>Art</span>
+                        <span style={{ color: "var(--color-text-muted)" }}>Art</span>
                         <p className="mt-0.5"><TypeBadge type={event.type} /></p>
                       </div>
                       <div className="sm:col-span-2">
-                        <span style={{ color: "var(--fur-muted)" }}>Vollständige Adresse</span>
-                        <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>📍 {event.location}</p>
+                        <span style={{ color: "var(--color-text-muted)" }}>Vollständige Adresse</span>
+                        <p style={{ color: "var(--color-text)", fontWeight: 500 }}>📍 {event.location}</p>
                       </div>
                       <div className="sm:col-span-2">
-                        <span style={{ color: "var(--fur-muted)" }}>Bemerkung</span>
-                        <p style={{ color: "var(--fur-text)" }} className="italic">
+                        <span style={{ color: "var(--color-text-muted)" }}>Bemerkung</span>
+                        <p style={{ color: "var(--color-text)" }} className="italic">
                           💬 {event.remark}
                         </p>
                       </div>
@@ -581,10 +580,10 @@ function EventCard({
         event.isFirst ? "ring-2" : ""
       }`}
       style={{
-        background: "#fff",
-        borderColor: event.isFirst ? "var(--fur-orange)" : "rgba(0,0,0,0.07)",
+        background: "var(--color-card-bg)",
+        borderColor: event.isFirst ? "var(--color-primary)" : "var(--color-border)",
         boxShadow: expanded ? "0 4px 20px rgba(0,0,0,0.08)" : "0 1px 3px rgba(0,0,0,0.04)",
-        ringColor: event.isFirst ? "rgba(232,123,45,0.3)" : "transparent",
+        ringColor: event.isFirst ? "rgba(46,125,50,0.3)" : "transparent",
       }}
       onClick={onToggle}
     >
@@ -593,7 +592,7 @@ function EventCard({
         <div
           className="flex-shrink-0 w-12 text-center rounded-xl py-1.5 text-white shadow-sm"
           style={{
-            background: "linear-gradient(135deg, var(--fur-purple), var(--fur-orange))",
+            background: "var(--color-primary)",
           }}
         >
           <div className="text-sm leading-none" style={{ fontWeight: 800 }}>
@@ -607,7 +606,7 @@ function EventCard({
           <div className="flex flex-wrap items-start gap-2 mb-1">
             <span
               className="leading-snug"
-              style={{ color: "var(--fur-text)", fontWeight: 600 }}
+              style={{ color: "var(--color-text)", fontWeight: 600 }}
             >
               {event.name}
             </span>
@@ -615,9 +614,9 @@ function EventCard({
               <span
                 className="text-xs px-2 py-0.5 rounded-full border whitespace-nowrap"
                 style={{
-                  background: "rgba(232,123,45,0.1)",
-                  color: "var(--fur-orange)",
-                  borderColor: "rgba(232,123,45,0.3)",
+                  background: "rgba(46,125,50,0.1)",
+                  color: "var(--color-primary)",
+                  borderColor: "rgba(46,125,50,0.3)",
                   fontWeight: 600,
                 }}
               >
@@ -627,7 +626,7 @@ function EventCard({
           </div>
           <div className="flex flex-wrap gap-2 items-center">
             <TypeBadge type={event.type} />
-            <span className="text-xs flex items-center gap-1" style={{ color: "var(--fur-muted)" }}>
+            <span className="text-xs flex items-center gap-1" style={{ color: "var(--color-text-muted)" }}>
               📍 {event.city}
             </span>
           </div>
@@ -637,7 +636,7 @@ function EventCard({
         <ChevronDown
           size={16}
           className={`flex-shrink-0 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
-          style={{ color: "var(--fur-muted)" }}
+          style={{ color: "var(--color-text-muted)" }}
         />
       </div>
 
@@ -646,21 +645,21 @@ function EventCard({
         <div
           className="border-t px-4 pb-4 pt-3"
           style={{
-            borderColor: "rgba(0,0,0,0.06)",
-            background: "var(--fur-warm-bg)",
+            borderColor: "var(--color-border)",
+            background: "var(--color-bg-neutral)",
           }}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <div>
-              <span className="text-xs" style={{ color: "var(--fur-muted)" }}>
+              <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                 Datum
               </span>
-              <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>
+              <p style={{ color: "var(--color-text)", fontWeight: 500 }}>
                 {event.dateDisplay}
               </p>
             </div>
             <div>
-              <span className="text-xs" style={{ color: "var(--fur-muted)" }}>
+              <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                 Art der Veranstaltung
               </span>
               <p className="mt-0.5">
@@ -668,20 +667,20 @@ function EventCard({
               </p>
             </div>
             <div className="sm:col-span-2">
-              <span className="text-xs" style={{ color: "var(--fur-muted)" }}>
+              <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                 Vollständige Adresse
               </span>
-              <p className="text-xs mt-0.5" style={{ color: "var(--fur-text)" }}>
+              <p className="text-xs mt-0.5" style={{ color: "var(--color-text)" }}>
                 📍 {event.location}
               </p>
             </div>
             <div className="sm:col-span-2">
-              <span className="text-xs" style={{ color: "var(--fur-muted)" }}>
+              <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
                 Bemerkung
               </span>
               <p
                 className="text-xs mt-0.5 italic"
-                style={{ color: "var(--fur-text)" }}
+                style={{ color: "var(--color-text)" }}
               >
                 💬 {event.remark}
               </p>

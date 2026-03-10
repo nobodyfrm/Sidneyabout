@@ -74,10 +74,10 @@ export default function App() {
     return (
       <div
         className="min-h-screen flex flex-col items-center justify-center gap-4"
-        style={{ background: "var(--fur-warm-bg)" }}
+        style={{ background: "var(--color-bg)" }}
       >
         <div className="text-5xl animate-bounce">🐾</div>
-        <p style={{ color: "var(--fur-muted)" }} className="text-sm">
+        <p style={{ color: "var(--color-text-muted)" }} className="text-sm">
           Lade Eventdaten aus XML…
         </p>
       </div>
@@ -85,7 +85,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--fur-warm-bg)" }}>
+    <div className="min-h-screen" style={{ background: "var(--color-bg)" }}>
       <NavBar />
       <HeroSection eventCount={events.length} events={events} />
       <EventsSection events={events} />

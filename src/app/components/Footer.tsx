@@ -7,69 +7,78 @@ export function Footer() {
     <footer
       className="py-10 px-4 border-t"
       style={{
-        background: "linear-gradient(135deg, #1A1225 0%, #2D1B45 100%)",
-        borderColor: "rgba(255,255,255,0.08)",
+        background: "var(--color-bg-neutral)",
+        borderColor: "var(--color-border)",
       }}
     >
-      <div className="max-w-3xl mx-auto flex flex-col items-center gap-4 text-center">
+      <div className="mx-auto flex flex-col items-center gap-4 text-center" style={{ maxWidth: "var(--max-content-width)" }}>
         {/* Logo */}
         <div className="flex items-center gap-2">
           <span
             className="w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-sm"
             style={{
-              background: "linear-gradient(135deg, var(--fur-orange), var(--fur-purple))",
+              background: "var(--color-primary)",
             }}
           >
             <PawPrint size={18} />
           </span>
           <span
             className="font-black text-xl"
-            style={{ color: "var(--fur-orange)" }}
+            style={{ color: "var(--color-primary)" }}
           >
             Sidney Furdog
           </span>
         </div>
 
         {/* Tagline */}
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
           🐾 Berliner Furry · Dabei seit Sommer 2025
         </p>
 
         {/* Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+        <div className="flex flex-wrap justify-center gap-4 text-xs" style={{ color: "var(--color-text-muted)" }}>
           <button
             onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}
-            className="hover:text-white transition-colors"
+            className="transition-colors"
+            style={{ color: "var(--color-text-muted)" }}
+            onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
+            onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
           >
             Über mich
           </button>
           <span>·</span>
           <button
             onClick={() => document.querySelector("#events")?.scrollIntoView({ behavior: "smooth" })}
-            className="hover:text-white transition-colors"
+            className="transition-colors"
+            style={{ color: "var(--color-text-muted)" }}
+            onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
+            onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
           >
             Events
           </button>
           <span>·</span>
           <button
             onClick={() => document.querySelector("#social")?.scrollIntoView({ behavior: "smooth" })}
-            className="hover:text-white transition-colors"
+            className="transition-colors"
+            style={{ color: "var(--color-text-muted)" }}
+            onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
+            onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
           >
             Social Media
           </button>
         </div>
 
         {/* Divider */}
-        <div className="w-full border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }} />
+        <div className="w-full border-t" style={{ borderColor: "var(--color-border)" }} />
 
         {/* Copyright */}
-        <p className="text-xs flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <p className="text-xs flex items-center gap-1.5" style={{ color: "var(--color-text-muted)" }}>
           © {year} Sidney Furdog · Gemacht mit{" "}
-          <Heart size={12} className="inline" style={{ color: "var(--fur-orange)" }} />{" "}
+          <Heart size={12} className="inline" style={{ color: "var(--color-primary)" }} />{" "}
           und vielen 🐾
         </p>
 
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+        <p className="text-xs" style={{ color: "var(--color-text-muted)", opacity: 0.6 }}>
           Eventdaten werden aus einer XML-Datei geladen.
         </p>
       </div>
