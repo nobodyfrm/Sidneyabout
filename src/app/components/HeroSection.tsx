@@ -48,8 +48,9 @@ export function HeroSection({ eventCount, events }: HeroProps) {
       }
     });
 
-    // Count conventions
-    const conventionCount = events.filter(e => e.type === "Convention").length;
+    // Count conventions (only past ones)
+    const pastConventions = events.filter(e => e.type === "Convention" && !e.isFuture);
+    const conventionCount = pastConventions.length;
 
     return {
       firstEvent: firstEventName,

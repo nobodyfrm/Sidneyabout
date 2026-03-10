@@ -88,6 +88,10 @@ export function EventsSection({ events }: Props) {
       });
   }, [events, filterType, search, sortField, sortDir]);
 
+  // Separate into future and past events
+  const futureEvents = useMemo(() => filtered.filter((e) => e.isFuture), [filtered]);
+  const pastEvents = useMemo(() => filtered.filter((e) => !e.isFuture), [filtered]);
+
   function handleSort(field: SortField) {
     if (sortField === field) {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -289,181 +293,264 @@ export function EventsSection({ events }: Props) {
           </div>
         )}
 
-        {/* ── CARDS VIEW ── */}
-        {viewMode === "cards" && (
-          <div className="space-y-3">
-            {filtered.map((event) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                expanded={expandedId === event.id}
-                onToggle={() =>
-                  setExpandedId(expandedId === event.id ? null : event.id)
-                }
+        {/* ── FUTURE EVENTS SECTION ── */}
+        {futureEvents.length > 0 && (
+          <div className="mb-12">
+            <h3
+              className="text-xl mb-4 px-1"
+              style={{
+                fontWeight: 700,
+                color: "var(--fur-text)",
+              }}
+            >
+              🔮 Anstehende Events ({futureEvents.length})
+            </h3>
+            {viewMode === "cards" ? (
+              <EventsCardsList
+                events={futureEvents}
+                expandedId={expandedId}
+                onToggle={setExpandedId}
               />
-            ))}
+            ) : (
+              <EventsTable
+                events={futureEvents}
+                expandedId={expandedId}
+                onToggle={setExpandedId}
+                handleSort={handleSort}
+                sortField={sortField}
+                SortIndicator={SortIndicator}
+              />
+            )}
           </div>
         )}
 
-        {/* ── TABLE VIEW ── */}
-        {viewMode === "table" && (
-          <div
-            className="overflow-x-auto rounded-2xl border shadow-sm"
-            style={{ borderColor: "rgba(0,0,0,0.07)" }}
-          >
-            <table className="w-full text-sm bg-white">
-              <thead>
-                <tr
-                  className="border-b"
-                  style={{
-                    background: "var(--fur-warm-bg)",
-                    borderColor: "rgba(0,0,0,0.07)",
-                  }}
-                >
-                  {(
-                    [
-                      { field: "date", label: "Datum" },
-                      { field: "name", label: "Veranstaltung" },
-                      { field: "type", label: "Art" },
-                      { field: "city", label: "Ort" },
-                    ] as { field: SortField; label: string }[]
-                  ).map((col) => (
-                    <th
-                      key={col.field}
-                      onClick={() => handleSort(col.field)}
-                      className="text-left px-4 py-3 cursor-pointer select-none whitespace-nowrap"
-                      style={{
-                        color: sortField === col.field ? "var(--fur-orange)" : "var(--fur-muted)",
-                        fontWeight: 600,
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      {col.label} <SortIndicator field={col.field} />
-                    </th>
-                  ))}
-                  <th
-                    className="text-left px-4 py-3 hidden lg:table-cell"
-                    style={{ color: "var(--fur-muted)", fontWeight: 600, fontSize: "0.75rem" }}
-                  >
-                    Bemerkung
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((event, i) => (
-                  <>
-                    <tr
-                      key={event.id}
-                      className="border-b cursor-pointer transition-colors"
-                      style={{
-                        borderColor: "rgba(0,0,0,0.05)",
-                        background: event.isFirst
-                          ? "rgba(232,123,45,0.04)"
-                          : i % 2 === 0
-                          ? "#fff"
-                          : "var(--fur-warm-bg)",
-                      }}
-                      onClick={() =>
-                        setExpandedId(expandedId === event.id ? null : event.id)
-                      }
-                      onMouseEnter={(e) =>
-                        ((e.currentTarget as HTMLTableRowElement).style.background =
-                          "rgba(232,123,45,0.06)")
-                      }
-                      onMouseLeave={(e) =>
-                        ((e.currentTarget as HTMLTableRowElement).style.background =
-                          event.isFirst
-                            ? "rgba(232,123,45,0.04)"
-                            : i % 2 === 0
-                            ? "#fff"
-                            : "var(--fur-warm-bg)")
-                      }
-                    >
-                      <td
-                        className="px-4 py-3 whitespace-nowrap text-xs"
-                        style={{ color: "var(--fur-muted)" }}
-                      >
-                        {event.dateDisplay}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div
-                          className="flex items-center gap-2"
-                          style={{ color: "var(--fur-text)", fontWeight: 500 }}
-                        >
-                          {event.name}
-                          {event.isFirst && (
-                            <span
-                              className="text-xs px-1.5 py-0.5 rounded-full border"
-                              style={{
-                                background: "rgba(232,123,45,0.1)",
-                                color: "var(--fur-orange)",
-                                borderColor: "rgba(232,123,45,0.3)",
-                              }}
-                            >
-                              ⭐ {event.firstType === "convention" ? "Erste Convention" : "Erstes Event"}
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        <TypeBadge type={event.type} />
-                      </td>
-                      <td
-                        className="px-4 py-3 text-xs"
-                        style={{ color: "var(--fur-muted)" }}
-                      >
-                        {event.city}
-                      </td>
-                      <td
-                        className="px-4 py-3 text-xs hidden lg:table-cell max-w-xs"
-                        style={{ color: "var(--fur-muted)" }}
-                      >
-                        <span className="line-clamp-1">{event.remark}</span>
-                      </td>
-                    </tr>
-                    {expandedId === event.id && (
-                      <tr
-                        key={`${event.id}-detail`}
-                        style={{ background: "rgba(232,123,45,0.03)" }}
-                      >
-                        <td colSpan={5} className="px-4 pb-4 pt-2">
-                          <div
-                            className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-xl border text-xs"
-                            style={{
-                              background: "rgba(232,123,45,0.05)",
-                              borderColor: "rgba(232,123,45,0.15)",
-                            }}
-                          >
-                            <div>
-                              <span style={{ color: "var(--fur-muted)" }}>Datum</span>
-                              <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>{event.dateDisplay}</p>
-                            </div>
-                            <div>
-                              <span style={{ color: "var(--fur-muted)" }}>Art</span>
-                              <p className="mt-0.5"><TypeBadge type={event.type} /></p>
-                            </div>
-                            <div className="sm:col-span-2">
-                              <span style={{ color: "var(--fur-muted)" }}>Vollständige Adresse</span>
-                              <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>📍 {event.location}</p>
-                            </div>
-                            <div className="sm:col-span-2">
-                              <span style={{ color: "var(--fur-muted)" }}>Bemerkung</span>
-                              <p style={{ color: "var(--fur-text)" }} className="italic">
-                                💬 {event.remark}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </>
-                ))}
-              </tbody>
-            </table>
+        {/* ── PAST EVENTS SECTION ── */}
+        {pastEvents.length > 0 && (
+          <div>
+            <h3
+              className="text-xl mb-4 px-1"
+              style={{
+                fontWeight: 700,
+                color: "var(--fur-text)",
+              }}
+            >
+              📜 Vergangene Events ({pastEvents.length})
+            </h3>
+            {viewMode === "cards" ? (
+              <EventsCardsList
+                events={pastEvents}
+                expandedId={expandedId}
+                onToggle={setExpandedId}
+              />
+            ) : (
+              <EventsTable
+                events={pastEvents}
+                expandedId={expandedId}
+                onToggle={setExpandedId}
+                handleSort={handleSort}
+                sortField={sortField}
+                SortIndicator={SortIndicator}
+              />
+            )}
           </div>
         )}
       </div>
     </section>
+  );
+}
+
+// ── Helper Components ──
+function EventsCardsList({
+  events,
+  expandedId,
+  onToggle,
+}: {
+  events: Event[];
+  expandedId: string | null;
+  onToggle: (id: string | null) => void;
+}) {
+  return (
+    <div className="space-y-3">
+      {events.map((event) => (
+        <EventCard
+          key={event.id}
+          event={event}
+          expanded={expandedId === event.id}
+          onToggle={() => onToggle(expandedId === event.id ? null : event.id)}
+        />
+      ))}
+    </div>
+  );
+}
+
+function EventsTable({
+  events,
+  expandedId,
+  onToggle,
+  handleSort,
+  sortField,
+  SortIndicator,
+}: {
+  events: Event[];
+  expandedId: string | null;
+  onToggle: (id: string | null) => void;
+  handleSort: (field: SortField) => void;
+  sortField: SortField;
+  SortIndicator: ({ field }: { field: SortField }) => JSX.Element;
+}) {
+  return (
+    <div
+      className="overflow-x-auto rounded-2xl border shadow-sm"
+      style={{ borderColor: "rgba(0,0,0,0.07)" }}
+    >
+      <table className="w-full text-sm bg-white">
+        <thead>
+          <tr
+            className="border-b"
+            style={{
+              background: "var(--fur-warm-bg)",
+              borderColor: "rgba(0,0,0,0.07)",
+            }}
+          >
+            {(
+              [
+                { field: "date", label: "Datum" },
+                { field: "name", label: "Veranstaltung" },
+                { field: "type", label: "Art" },
+                { field: "city", label: "Ort" },
+              ] as { field: SortField; label: string }[]
+            ).map((col) => (
+              <th
+                key={col.field}
+                onClick={() => handleSort(col.field)}
+                className="text-left px-4 py-3 cursor-pointer select-none whitespace-nowrap"
+                style={{
+                  color: sortField === col.field ? "var(--fur-orange)" : "var(--fur-muted)",
+                  fontWeight: 600,
+                  fontSize: "0.75rem",
+                }}
+              >
+                {col.label} <SortIndicator field={col.field} />
+              </th>
+            ))}
+            <th
+              className="text-left px-4 py-3 hidden lg:table-cell"
+              style={{ color: "var(--fur-muted)", fontWeight: 600, fontSize: "0.75rem" }}
+            >
+              Bemerkung
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {events.map((event, i) => (
+            <>
+              <tr
+                key={event.id}
+                className="border-b cursor-pointer transition-colors"
+                style={{
+                  borderColor: "rgba(0,0,0,0.05)",
+                  background: event.isFirst
+                    ? "rgba(232,123,45,0.04)"
+                    : i % 2 === 0
+                    ? "#fff"
+                    : "var(--fur-warm-bg)",
+                }}
+                onClick={() => onToggle(expandedId === event.id ? null : event.id)}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLTableRowElement).style.background =
+                    "rgba(232,123,45,0.06)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLTableRowElement).style.background =
+                    event.isFirst
+                      ? "rgba(232,123,45,0.04)"
+                      : i % 2 === 0
+                      ? "#fff"
+                      : "var(--fur-warm-bg)")
+                }
+              >
+                <td
+                  className="px-4 py-3 whitespace-nowrap text-xs"
+                  style={{ color: "var(--fur-muted)" }}
+                >
+                  {event.dateDisplay}
+                </td>
+                <td className="px-4 py-3">
+                  <div
+                    className="flex items-center gap-2"
+                    style={{ color: "var(--fur-text)", fontWeight: 500 }}
+                  >
+                    {event.name}
+                    {event.isFirst && (
+                      <span
+                        className="text-xs px-1.5 py-0.5 rounded-full border"
+                        style={{
+                          background: "rgba(232,123,45,0.1)",
+                          color: "var(--fur-orange)",
+                          borderColor: "rgba(232,123,45,0.3)",
+                        }}
+                      >
+                        ⭐ {event.firstType === "convention" ? "Erste Convention" : "Erstes Event"}
+                      </span>
+                    )}
+                  </div>
+                </td>
+                <td className="px-4 py-3">
+                  <TypeBadge type={event.type} />
+                </td>
+                <td
+                  className="px-4 py-3 text-xs"
+                  style={{ color: "var(--fur-muted)" }}
+                >
+                  {event.city}
+                </td>
+                <td
+                  className="px-4 py-3 text-xs hidden lg:table-cell max-w-xs"
+                  style={{ color: "var(--fur-muted)" }}
+                >
+                  <span className="line-clamp-1">{event.remark}</span>
+                </td>
+              </tr>
+              {expandedId === event.id && (
+                <tr
+                  key={`${event.id}-detail`}
+                  style={{ background: "rgba(232,123,45,0.03)" }}
+                >
+                  <td colSpan={5} className="px-4 pb-4 pt-2">
+                    <div
+                      className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-xl border text-xs"
+                      style={{
+                        background: "rgba(232,123,45,0.05)",
+                        borderColor: "rgba(232,123,45,0.15)",
+                      }}
+                    >
+                      <div>
+                        <span style={{ color: "var(--fur-muted)" }}>Datum</span>
+                        <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>{event.dateDisplay}</p>
+                      </div>
+                      <div>
+                        <span style={{ color: "var(--fur-muted)" }}>Art</span>
+                        <p className="mt-0.5"><TypeBadge type={event.type} /></p>
+                      </div>
+                      <div className="sm:col-span-2">
+                        <span style={{ color: "var(--fur-muted)" }}>Vollständige Adresse</span>
+                        <p style={{ color: "var(--fur-text)", fontWeight: 500 }}>📍 {event.location}</p>
+                      </div>
+                      <div className="sm:col-span-2">
+                        <span style={{ color: "var(--fur-muted)" }}>Bemerkung</span>
+                        <p style={{ color: "var(--fur-text)" }} className="italic">
+                          💬 {event.remark}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
