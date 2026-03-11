@@ -77,10 +77,6 @@ export function Footer() {
           <Heart size={12} className="inline" style={{ color: "var(--color-primary)" }} />{" "}
           und vielen 🐾
         </p>
-
-        <p className="text-xs" style={{ color: "var(--color-text-muted)", opacity: 0.6 }}>
-          Eventdaten werden aus einer XML-Datei geladen.
-        </p>
       </div>
     </footer>
   );
