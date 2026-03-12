@@ -1,0 +1,22 @@
+/* Interaction defaults */
+
+/* Cursor */
+button:not(:disabled),
+a[href],
+[role="button"],
+.clickable {
+  cursor: pointer;
+}
+
+/* Focus */
+:focus-visible {
+  outline: 3px solid var(--color-accent, #2ecc71);
+  outline-offset: 3px;
+}
+
+/* Hover */
+button:hover,
+a:hover,
+.card-clickable:hover {
+  filter: brightness(1.1);
+}

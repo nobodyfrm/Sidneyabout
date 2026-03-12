@@ -1,5 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search, X, ChevronDown, LayoutGrid, List } from "lucide-react";
+import { Pagination } from "./Pagination";
 
 export interface Event {
   id: string;
@@ -61,6 +62,11 @@ export function EventsSection({ events }: Props) {
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"cards" | "table">("cards");
+  
+  // Pagination state - separate for future and past events
+  const [futureCurrentPage, setFutureCurrentPage] = useState(1);
+  const [pastCurrentPage, setPastCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   const types = useMemo(() => {
     const all = Array.from(new Set(events.map((e) => e.type)));
@@ -91,6 +97,26 @@ export function EventsSection({ events }: Props) {
   // Separate into future and past events
   const futureEvents = useMemo(() => filtered.filter((e) => e.isFuture), [filtered]);
   const pastEvents = useMemo(() => filtered.filter((e) => !e.isFuture), [filtered]);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setFutureCurrentPage(1);
+    setPastCurrentPage(1);
+  }, [search, filterType, sortField, sortDir]);
+
+  // Paginated events
+  const paginatedFutureEvents = useMemo(() => {
+    const startIndex = (futureCurrentPage - 1) * ITEMS_PER_PAGE;
+    return futureEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [futureEvents, futureCurrentPage]);
+
+  const paginatedPastEvents = useMemo(() => {
+    const startIndex = (pastCurrentPage - 1) * ITEMS_PER_PAGE;
+    return pastEvents.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [pastEvents, pastCurrentPage]);
+
+  const futureTotalPages = Math.ceil(futureEvents.length / ITEMS_PER_PAGE);
+  const pastTotalPages = Math.ceil(pastEvents.length / ITEMS_PER_PAGE);
 
   function handleSort(field: SortField) {
     if (sortField === field) {
@@ -306,18 +332,26 @@ export function EventsSection({ events }: Props) {
             </h3>
             {viewMode === "cards" ? (
               <EventsCardsList
-                events={futureEvents}
+                events={paginatedFutureEvents}
                 expandedId={expandedId}
                 onToggle={setExpandedId}
               />
             ) : (
               <EventsTable
-                events={futureEvents}
+                events={paginatedFutureEvents}
                 expandedId={expandedId}
                 onToggle={setExpandedId}
                 handleSort={handleSort}
                 sortField={sortField}
                 SortIndicator={SortIndicator}
+              />
+            )}
+            {/* Pagination controls */}
+            {futureTotalPages > 1 && (
+              <Pagination
+                currentPage={futureCurrentPage}
+                totalPages={futureTotalPages}
+                onPageChange={setFutureCurrentPage}
               />
             )}
           </div>
@@ -337,18 +371,26 @@ export function EventsSection({ events }: Props) {
             </h3>
             {viewMode === "cards" ? (
               <EventsCardsList
-                events={pastEvents}
+                events={paginatedPastEvents}
                 expandedId={expandedId}
                 onToggle={setExpandedId}
               />
             ) : (
               <EventsTable
-                events={pastEvents}
+                events={paginatedPastEvents}
                 expandedId={expandedId}
                 onToggle={setExpandedId}
                 handleSort={handleSort}
                 sortField={sortField}
                 SortIndicator={SortIndicator}
+              />
+            )}
+            {/* Pagination controls */}
+            {pastTotalPages > 1 && (
+              <Pagination
+                currentPage={pastCurrentPage}
+                totalPages={pastTotalPages}
+                onPageChange={setPastCurrentPage}
               />
             )}
           </div>

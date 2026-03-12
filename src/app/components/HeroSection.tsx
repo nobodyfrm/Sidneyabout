@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { MapPin, Calendar, Star, PawPrint } from "lucide-react";
 import { Event } from "./EventsSection";
+import sidneyImage from "figma:asset/3b19625cfe54fb82cd432838d05ad1f95c64041d.png";
 
 interface HeroProps {
   eventCount: number;
@@ -154,7 +155,11 @@ export function HeroSection({ eventCount, events }: HeroProps) {
                   "linear-gradient(135deg, var(--color-primary-light), var(--color-primary), var(--color-accent-purple))",
               }}
             >
-              🐺
+              <img
+                src={sidneyImage}
+                alt="Sidney Furdog"
+                className="w-full h-full rounded-3xl"
+              />
             </div>
             <span
               className="absolute -bottom-2 -right-2 w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md text-sm"
