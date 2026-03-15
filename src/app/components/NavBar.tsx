@@ -4,6 +4,7 @@ import { Menu, X, PawPrint, Sun, Moon } from "lucide-react";
 export function NavBar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showTitle, setShowTitle] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     // Check localStorage first
     const stored = localStorage.getItem("theme");
@@ -13,7 +14,13 @@ export function NavBar() {
   });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      // Show title when hero section (with main h1) is scrolled out of view
+      // Approximate: Hero section is ~100vh, so show title when scrolled past 70vh
+      const heroThreshold = window.innerHeight * 0.7;
+      setShowTitle(window.scrollY > heroThreshold);
+    };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -76,8 +83,12 @@ export function NavBar() {
             <PawPrint size={16} />
           </span>
           <span
-            className="font-black text-lg hidden sm:block"
-            style={{ color: "var(--color-primary)" }}
+            className={`font-black text-lg transition-all duration-300 overflow-hidden whitespace-nowrap ${
+              showTitle ? "max-w-[200px] opacity-100" : "max-w-0 sm:max-w-[200px] opacity-0 sm:opacity-70"
+            }`}
+            style={{ 
+              color: "var(--color-primary)",
+            }}
           >
             Sidney Furdog
           </span>

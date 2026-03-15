@@ -153,12 +153,17 @@ export function HeroSection({ eventCount, events }: HeroProps) {
               style={{
                 background:
                   "linear-gradient(135deg, var(--color-primary-light), var(--color-primary), var(--color-accent-purple))",
+                boxShadow: "0 0 30px rgba(46, 125, 50, 0.6), 0 0 60px rgba(46, 125, 50, 0.3), 0 10px 40px rgba(0, 0, 0, 0.2)",
+                animation: "glow 3s ease-in-out infinite alternate",
               }}
             >
               <img
                 src={sidneyImage}
                 alt="Sidney Furdog"
                 className="w-full h-full rounded-3xl"
+                style={{
+                  boxShadow: "inherit",
+                }}
               />
             </div>
             <span

@@ -132,6 +132,17 @@
     <remark>Post-Con-Depression gemeinsam bekämpfen — Walk am Brandenburger Tor nach der NFC.</remark>
     <isFirst>false</isFirst>
   </event>
+  <event id="nfe2025">
+    <date>2025-12-31</date>
+    <dateDisplay>31.12.2025 – 01.01.2026</dateDisplay>
+    <name>NFE New Furs Eve</name>
+    <type>Party</type>
+    <location>Gemeindehaus Wittenförden</location>
+    <city>Wittenförden</city>
+    <remark>Silvesterparty mit der Furry-Community — mein erster Furdance!</remark>
+    <isFirst>true</isFirst>
+    <firstType>furdance</firstType>
+  </event>
   <event id="14">
     <date>2026-04-11</date>
     <dateDisplay>11.04.2026 – 12.04.2026</dateDisplay>
@@ -168,11 +179,11 @@
   <event id="17">
     <date>2026-06-20</date>
     <dateDisplay>20.06.2026</dateDisplay>
-    <name>Respawn</name>
-    <type>Party</type>
-    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <name>Furry Sommerfest 2026</name>
+    <type>Festival</type>
+    <location>Berlin</location>
     <city>Berlin</city>
-    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <remark>Das zweite Furry-Sommerfest — ein Jahr nach meinem Einstieg in die Community!</remark>
     <isFirst>false</isFirst>
     <isFuture>true</isFuture>
   </event>

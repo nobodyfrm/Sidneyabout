@@ -1,5 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
 import { Search, X, ChevronDown, LayoutGrid, List } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
 import { Pagination } from "./Pagination";
 
 export interface Event {
@@ -14,6 +19,7 @@ export interface Event {
   isFirst: boolean;
   firstType?: string;
   isFuture?: boolean;
+  attendance?: "confirmed" | "maybe" | "cancelled";
 }
 
 const TYPE_COLORS: Record<string, { bg: string; text: string; border: string; dot: string }> = {
@@ -62,6 +68,10 @@ export function EventsSection({ events }: Props) {
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"cards" | "table">("cards");
+  
+  // Collapsible state for sections
+  const [futureExpanded, setFutureExpanded] = useState(true);
+  const [pastExpanded, setPastExpanded] = useState(true);
   
   // Pagination state - separate for future and past events
   const [futureCurrentPage, setFutureCurrentPage] = useState(1);
@@ -321,78 +331,104 @@ export function EventsSection({ events }: Props) {
         {/* ── FUTURE EVENTS SECTION ── */}
         {futureEvents.length > 0 && (
           <div className="mb-12">
-            <h3
-              className="text-xl mb-4 px-1"
-              style={{
-                fontWeight: 700,
-                color: "var(--color-text)",
-              }}
-            >
-              🔮 Anstehende Events ({futureEvents.length})
-            </h3>
-            {viewMode === "cards" ? (
-              <EventsCardsList
-                events={paginatedFutureEvents}
-                expandedId={expandedId}
-                onToggle={setExpandedId}
-              />
-            ) : (
-              <EventsTable
-                events={paginatedFutureEvents}
-                expandedId={expandedId}
-                onToggle={setExpandedId}
-                handleSort={handleSort}
-                sortField={sortField}
-                SortIndicator={SortIndicator}
-              />
-            )}
-            {/* Pagination controls */}
-            {futureTotalPages > 1 && (
-              <Pagination
-                currentPage={futureCurrentPage}
-                totalPages={futureTotalPages}
-                onPageChange={setFutureCurrentPage}
-              />
-            )}
+            <Collapsible open={futureExpanded} onOpenChange={setFutureExpanded}>
+              <CollapsibleTrigger asChild>
+                <button
+                  className="flex items-center gap-2 w-full text-left mb-4 px-1 group"
+                  style={{
+                    fontWeight: 700,
+                    color: "var(--color-text)",
+                  }}
+                >
+                  <h3 className="text-xl">
+                    🔮 Anstehende Events ({futureEvents.length})
+                  </h3>
+                  <ChevronDown
+                    size={20}
+                    className={`transition-transform duration-200 ${futureExpanded ? "" : "-rotate-90"} `}
+                    style={{ color: "var(--color-text-muted)" }}
+                  />
+                </button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                {viewMode === "cards" ? (
+                  <EventsCardsList
+                    events={paginatedFutureEvents}
+                    expandedId={expandedId}
+                    onToggle={setExpandedId}
+                  />
+                ) : (
+                  <EventsTable
+                    events={paginatedFutureEvents}
+                    expandedId={expandedId}
+                    onToggle={setExpandedId}
+                    handleSort={handleSort}
+                    sortField={sortField}
+                    SortIndicator={SortIndicator}
+                  />
+                )}
+                {/* Pagination controls */}
+                {futureTotalPages > 1 && (
+                  <Pagination
+                    currentPage={futureCurrentPage}
+                    totalPages={futureTotalPages}
+                    onPageChange={setFutureCurrentPage}
+                  />
+                )}
+              </CollapsibleContent>
+            </Collapsible>
           </div>
         )}
 
         {/* ── PAST EVENTS SECTION ── */}
         {pastEvents.length > 0 && (
           <div>
-            <h3
-              className="text-xl mb-4 px-1"
-              style={{
-                fontWeight: 700,
-                color: "var(--color-text)",
-              }}
-            >
-              📜 Vergangene Events ({pastEvents.length})
-            </h3>
-            {viewMode === "cards" ? (
-              <EventsCardsList
-                events={paginatedPastEvents}
-                expandedId={expandedId}
-                onToggle={setExpandedId}
-              />
-            ) : (
-              <EventsTable
-                events={paginatedPastEvents}
-                expandedId={expandedId}
-                onToggle={setExpandedId}
-                handleSort={handleSort}
-                sortField={sortField}
-                SortIndicator={SortIndicator}
-              />
-            )}
-            {/* Pagination controls */}
-            {pastTotalPages > 1 && (
-              <Pagination
-                currentPage={pastCurrentPage}
-                totalPages={pastTotalPages}
-                onPageChange={setPastCurrentPage}
-              />
-            )}
+            <Collapsible open={pastExpanded} onOpenChange={setPastExpanded}>
+              <CollapsibleTrigger asChild>
+                <button
+                  className="flex items-center gap-2 w-full text-left mb-4 px-1 group"
+                  style={{
+                    fontWeight: 700,
+                    color: "var(--color-text)",
+                  }}
+                >
+                  <h3 className="text-xl">
+                    📜 Vergangene Events ({pastEvents.length})
+                  </h3>
+                  <ChevronDown
+                    size={20}
+                    className={`transition-transform duration-200 ${pastExpanded ? "" : "-rotate-90"} `}
+                    style={{ color: "var(--color-text-muted)" }}
+                  />
+                </button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                {viewMode === "cards" ? (
+                  <EventsCardsList
+                    events={paginatedPastEvents}
+                    expandedId={expandedId}
+                    onToggle={setExpandedId}
+                  />
+                ) : (
+                  <EventsTable
+                    events={paginatedPastEvents}
+                    expandedId={expandedId}
+                    onToggle={setExpandedId}
+                    handleSort={handleSort}
+                    sortField={sortField}
+                    SortIndicator={SortIndicator}
+                  />
+                )}
+                {/* Pagination controls */}
+                {pastTotalPages > 1 && (
+                  <Pagination
+                    currentPage={pastCurrentPage}
+                    totalPages={pastTotalPages}
+                    onPageChange={setPastCurrentPage}
+                  />
+                )}
+              </CollapsibleContent>
+            </Collapsible>
           </div>
         )}
       </div>
@@ -531,7 +567,20 @@ function EventsTable({
                           borderColor: "rgba(46,125,50,0.3)",
                         }}
                       >
-                        ⭐ {event.firstType === "convention" ? "Erste Convention" : "Erstes Event"}
+                        ⭐ {event.firstType === "convention" ? "Erste Convention" : event.firstType === "furdance" ? "Erster Furdance" : "Erstes Event"}
+                      </span>
+                    )}
+                    {event.attendance === "maybe" && (
+                      <span
+                        className="text-xs px-2 py-0.5 rounded-full border whitespace-nowrap"
+                        style={{
+                          background: "rgba(251, 191, 36, 0.1)",
+                          color: "#d97706",
+                          borderColor: "rgba(251, 191, 36, 0.3)",
+                          fontWeight: 600,
+                        }}
+                      >
+                        🤔 Vielleicht
                       </span>
                     )}
                   </div>
@@ -662,7 +711,20 @@ function EventCard({
                   fontWeight: 600,
                 }}
               >
-                ⭐ {event.firstType === "convention" ? "Erste Convention" : "Erstes Event"}
+                ⭐ {event.firstType === "convention" ? "Erste Convention" : event.firstType === "furdance" ? "Erster Furdance" : "Erstes Event"}
+              </span>
+            )}
+            {event.attendance === "maybe" && (
+              <span
+                className="text-xs px-2 py-0.5 rounded-full border whitespace-nowrap"
+                style={{
+                  background: "rgba(251, 191, 36, 0.1)",
+                  color: "#d97706",
+                  borderColor: "rgba(251, 191, 36, 0.3)",
+                  fontWeight: 600,
+                }}
+              >
+                🤔 Vielleicht
               </span>
             )}
           </div>
