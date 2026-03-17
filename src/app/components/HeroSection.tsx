@@ -60,11 +60,12 @@ export function HeroSection({ eventCount, events }: HeroProps) {
     return () => clearTimeout(t);
   }, []);
 
-  const { firstEvent, countries, conventions } = useMemo(() => {
+  const { firstEvent, countries, walks, conventions } = useMemo(() => {
     if (!events || events.length === 0) {
       return {
         firstEvent: "Berliner Furry-Sommerfest",
         countries: 0,
+        walks: 0,
         conventions: 0,
       };
     }
@@ -85,6 +86,11 @@ export function HeroSection({ eventCount, events }: HeroProps) {
         countryNames.add("Deutschland");
       }
     });
+    // Count walks (past events only)
+    const pastWalks = events.filter(
+      (e) => e.type === "Walk" && !e.isFuture,
+    );
+    const walksCount = pastWalks.length;
 
     const pastConventions = events.filter(
       (e) => e.type === "Convention" && !e.isFuture,
@@ -94,6 +100,7 @@ export function HeroSection({ eventCount, events }: HeroProps) {
     return {
       firstEvent: firstEventName,
       countries: countryNames.size,
+      walks: walksCount,
       conventions: conventionCount,
     };
   }, [events]);
@@ -263,9 +270,9 @@ export function HeroSection({ eventCount, events }: HeroProps) {
             label="Events"
           />
           <StatCard
-            emoji="🌍"
-            value={countries.toString()}
-            label="Länder"
+            emoji="🚶‍♂️"
+            value={walks.toString()}
+            label="Walks"
           />
           <StatCard
             emoji="⭐"

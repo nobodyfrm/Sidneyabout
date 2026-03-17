@@ -131,14 +131,6 @@ export function NavBar() {
           >
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-
-          <button
-            onClick={() => handleNav("#events")}
-            className="ml-2 px-4 py-2 rounded-full text-sm text-white transition-all hover:opacity-90 shadow-sm"
-            style={{ background: "var(--color-primary)" }}
-          >
-            🐾 Events ansehen
-          </button>
         </div>
 
         {/* Mobile hamburger + theme toggle */}

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { NavBar } from "./components/NavBar";
 import { HeroSection } from "./components/HeroSection";
+import { FursuitSection } from "./components/FursuitSection";
 import { EventsSection, Event } from "./components/EventsSection";
 import { SocialSection, SocialProfile } from "./components/SocialSection";
 import { Footer } from "./components/Footer";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 /* ─── XML Parser helpers ─────────────────────────────────────────── */
 function getText(el: Element, tag: string): string {
@@ -23,6 +25,7 @@ function parseEvents(doc: Document): Event[] {
     isFirst: getText(el, "isFirst") === "true",
     firstType: getText(el, "firstType") || undefined,
     isFuture: getText(el, "isFuture") === "true",
+    attendance: (getText(el, "attendance") as "confirmed" | "maybe" | "cancelled" | undefined) || undefined,
   }));
 }
 
@@ -88,9 +91,11 @@ export default function App() {
     <div className="min-h-screen" style={{ background: "var(--color-bg)" }}>
       <NavBar />
       <HeroSection eventCount={events.length} events={events} />
+      <FursuitSection />
       <EventsSection events={events} />
       <SocialSection profiles={social} />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

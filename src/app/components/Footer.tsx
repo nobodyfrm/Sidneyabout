@@ -48,6 +48,16 @@ export function Footer() {
           </button>
           <span>·</span>
           <button
+            onClick={() => document.querySelector("#fursuit")?.scrollIntoView({ behavior: "smooth" })}
+            className="transition-colors"
+            style={{ color: "var(--color-text-muted)" }}
+            onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
+            onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
+          >
+            Fursuit
+          </button>
+          <span>·</span>
+          <button
             onClick={() => document.querySelector("#events")?.scrollIntoView({ behavior: "smooth" })}
             className="transition-colors"
             style={{ color: "var(--color-text-muted)" }}
@@ -66,6 +76,18 @@ export function Footer() {
           >
             Social Media
           </button>
+          <span>·</span>
+          <a
+            href="https://forum.queerpoint.net/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors"
+            style={{ color: "var(--color-text-muted)" }}
+            onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
+            onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
+          >
+            Impressum
+          </a>
         </div>
 
         {/* Divider */}

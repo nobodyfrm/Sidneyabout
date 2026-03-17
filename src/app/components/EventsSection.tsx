@@ -670,11 +670,13 @@ function EventCard({
       className={`rounded-2xl border overflow-hidden transition-all cursor-pointer ${
         event.isFirst ? "ring-2" : ""
       }`}
+      id={`event-${event.id}`}
       style={{
         background: "var(--color-card-bg)",
         borderColor: event.isFirst ? "var(--color-primary)" : "var(--color-border)",
         boxShadow: expanded ? "0 4px 20px rgba(0,0,0,0.08)" : "0 1px 3px rgba(0,0,0,0.04)",
         ringColor: event.isFirst ? "rgba(46,125,50,0.3)" : "transparent",
+        scrollMarginTop: "80px", // Offset for fixed header
       }}
       onClick={onToggle}
     >
