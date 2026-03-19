@@ -48,13 +48,13 @@ export function Footer() {
           </button>
           <span>·</span>
           <button
-            onClick={() => document.querySelector("#fursuit")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.querySelector("#social")?.scrollIntoView({ behavior: "smooth" })}
             className="transition-colors"
             style={{ color: "var(--color-text-muted)" }}
             onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
             onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
           >
-            Fursuit
+            Social Media
           </button>
           <span>·</span>
           <button
@@ -68,13 +68,13 @@ export function Footer() {
           </button>
           <span>·</span>
           <button
-            onClick={() => document.querySelector("#social")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.querySelector("#fursuit")?.scrollIntoView({ behavior: "smooth" })}
             className="transition-colors"
             style={{ color: "var(--color-text-muted)" }}
             onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-primary)"}
             onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-muted)"}
           >
-            Social Media
+            Fursuit
           </button>
           <span>·</span>
           <a

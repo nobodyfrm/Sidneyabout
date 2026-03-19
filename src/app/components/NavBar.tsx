@@ -44,8 +44,9 @@ export function NavBar() {
 
   const links = [
     { href: "#about", label: "Über mich" },
-    { href: "#events", label: "Events" },
     { href: "#social", label: "Social Media" },
+    { href: "#events", label: "Events" },
+    { href: "#fursuit", label: "Fursuit" },
   ];
 
   const handleNav = (href: string) => {

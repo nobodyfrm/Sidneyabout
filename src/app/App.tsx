@@ -13,20 +13,32 @@ function getText(el: Element, tag: string): string {
 }
 
 function parseEvents(doc: Document): Event[] {
-  return Array.from(doc.querySelectorAll("event")).map((el) => ({
-    id: el.getAttribute("id") ?? Math.random().toString(),
-    date: getText(el, "date"),
-    dateDisplay: getText(el, "dateDisplay"),
-    name: getText(el, "name"),
-    type: getText(el, "type"),
-    location: getText(el, "location"),
-    city: getText(el, "city"),
-    remark: getText(el, "remark"),
-    isFirst: getText(el, "isFirst") === "true",
-    firstType: getText(el, "firstType") || undefined,
-    isFuture: getText(el, "isFuture") === "true",
-    attendance: (getText(el, "attendance") as "confirmed" | "maybe" | "cancelled" | undefined) || undefined,
-  }));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset to start of day for accurate comparison
+
+  return Array.from(doc.querySelectorAll("event")).map((el) => {
+    const dateStr = getText(el, "date");
+    const eventDate = new Date(dateStr);
+    eventDate.setHours(0, 0, 0, 0);
+    
+    // Event is in the future if its date is after today
+    const isFuture = eventDate > today;
+
+    return {
+      id: el.getAttribute("id") ?? Math.random().toString(),
+      date: dateStr,
+      dateDisplay: getText(el, "dateDisplay"),
+      name: getText(el, "name"),
+      type: getText(el, "type"),
+      location: getText(el, "location"),
+      city: getText(el, "city"),
+      remark: getText(el, "remark"),
+      isFirst: getText(el, "isFirst") === "true",
+      firstType: getText(el, "firstType") || undefined,
+      isFuture: isFuture,
+      attendance: (getText(el, "attendance") as "confirmed" | "maybe" | "cancelled" | undefined) || undefined,
+    };
+  });
 }
 
 function parseSocial(doc: Document): SocialProfile[] {
@@ -91,9 +103,9 @@ export default function App() {
     <div className="min-h-screen" style={{ background: "var(--color-bg)" }}>
       <NavBar />
       <HeroSection eventCount={events.length} events={events} />
-      <FursuitSection />
-      <EventsSection events={events} />
       <SocialSection profiles={social} />
+      <EventsSection events={events} />
+      <FursuitSection />
       <Footer />
       <ScrollToTop />
     </div>
