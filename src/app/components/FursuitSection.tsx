@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
+import img1 from "figma:asset/0f605921e0eb8666633a71da8fc8b6b510f44af6.png";
+import img2 from "figma:asset/33989908c365674362159e717b4e232a0a8f5335.png";
+import img3 from "figma:asset/c6530cbf108d97c7e43634c110fb5f305fd0f983.png";
+import img4 from "figma:asset/254e24e8d2702e8a55937ac8501292608b34754d.png";
+import img5 from "figma:asset/5a9a198a352e6530dd98b56c11c593da4d956603.png";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function FursuitSection() {
@@ -9,31 +14,38 @@ export function FursuitSection() {
   const timeline = [
     {
       id: 1,
-      title: "Konzeptphase",
-      date: "Januar 2026",
-      description: "Die ersten Skizzen und Ideen für meinen Fursuit entstehen.",
-      image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&h=600&fit=crop",
+      title: "Inspiration & Vorbild",
+      date: "Herbst 2025",
+      description: "Sidney, mein Australian Shepherd/Labrador Mix — die Inspiration für meinen Fursuit-Charakter.",
+      image: img1,
     },
     {
       id: 2,
-      title: "Planung & Design",
-      date: "Februar 2026",
-      description: "Farbauswahl, Materialien und detaillierte Planungen mit dem Maker.",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+      title: "Character Design",
+      date: "Winter 2025",
+      description: "Ausarbeitung des Charakterdesigns mit grünem Halstuch und allen wichtigen Details.",
+      image: img2,
     },
     {
       id: 3,
-      title: "Kopf in Arbeit",
-      date: "März 2026",
-      description: "Der Fursuit-Kopf nimmt Form an — erste Grundstruktur steht!",
-      image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop",
+      title: "Fullsuit Konzept",
+      date: "Januar 2026",
+      description: "Detaillierte Referenzblätter für den Fullsuit mit Front-, Seiten- und Rückansicht.",
+      image: img3,
     },
     {
       id: 4,
-      title: "Details & Finishing",
-      date: "April 2026",
-      description: "Feinarbeiten, Augen, Zunge und weitere Details werden hinzugefügt.",
-      image: "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=800&h=600&fit=crop",
+      title: "Kopf - Grundstruktur",
+      date: "Februar 2026",
+      description: "Der Fursuit-Kopf nimmt Form an — erste Schaumstoffstruktur mit Augen- und Schnauzenöffnungen.",
+      image: img4,
+    },
+    {
+      id: 5,
+      title: "Kopf - Innenausbau",
+      date: "März 2026",
+      description: "Innenansicht des Kopfes mit Polsterung und Struktur für optimalen Tragekomfort.",
+      image: img5,
     },
   ];
 
@@ -175,9 +187,9 @@ export function FursuitSection() {
           }}
         >
           <p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-            <strong style={{ color: "var(--color-primary)" }}>📸 Hinweis:</strong>{" "}
-            Die Bilder sind Platzhalter und werden bald durch echte Fotos meiner
-            Fursuit-Entstehung ersetzt!
+            <strong style={{ color: "var(--color-primary)" }}>📸 Galerie:</strong>{" "}
+            Hier zeige ich 5 von insgesamt 55 Bildern der Entstehung meines Fursuits.
+            Klicke auf ein Bild, um es zu vergrößern!
           </p>
         </div>
       </div>

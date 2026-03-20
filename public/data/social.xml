@@ -48,4 +48,12 @@
     <color>#FF6B35</color>
     <description>Furry-Social-Network</description>
   </profile>
+  <profile>
+    <platform>PayPal</platform>
+    <handle>sidneyfurdog</handle>
+    <url>https://paypal.me/sidneyfurdog</url>
+    <icon>paypal</icon>
+    <color>#00457C</color>
+    <description>Unterstütze mich via PayPal</description>
+  </profile>
 </socialMedia>
