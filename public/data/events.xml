@@ -231,4 +231,14 @@
     <isFirst>false</isFirst>
     <isFuture>true</isFuture>
   </event>
+  <event id="Respawn202603">
+    <date>2026-03-14</date>
+    <dateDisplay>14.03.2026</dateDisplay>
+    <name>Respawn</name>
+    <type>Party</type>
+    <location>METRONOM Berlin, Sterkrader Str. 44, 13507 Berlin</location>
+    <city>Berlin</city>
+    <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
+    <isFirst>false</isFirst>
+  </event>
 </events>
