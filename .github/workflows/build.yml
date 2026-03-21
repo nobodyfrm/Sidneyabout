@@ -25,7 +25,7 @@ jobs:
       - name: Fix figma asset imports
         run: |
           find src -type f -name "*.ts" -o -name "*.tsx" | while read file; do
-            sed -i 's|figma:asset/|/assets/|g' "../$file"
+            sed -i 's|figma:asset/|../assets/|g' "$file"
           done
 
       - name: Projekt bauen
