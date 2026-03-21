@@ -7,11 +7,15 @@ on:
 
 jobs:
   build:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+      
     runs-on: ubuntu-latest
 
     steps:
       - name: Repository auschecken
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Node installieren
         uses: actions/setup-node@v4
@@ -36,3 +40,14 @@ jobs:
         with:
           name: artefakt
           path: dist
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Artifact to Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          # upload entire directory
+          path: dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
