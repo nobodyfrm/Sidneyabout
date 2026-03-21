@@ -21,6 +21,13 @@ jobs:
       - name: Dependencies installieren
         run: npm i
 
+      # 🔥 Figma Imports ersetzen
+      - name: Fix figma asset imports
+        run: |
+          find src -type f -name "*.ts" -o -name "*.tsx" | while read file; do
+            sed -i 's|figma:asset/|/assets/|g' "$file"
+          done
+
       - name: Projekt bauen
         run: npm run build
 
