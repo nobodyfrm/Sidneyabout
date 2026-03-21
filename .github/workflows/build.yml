@@ -22,10 +22,7 @@ jobs:
         run: npm i
 
       - name: tree
-        run: tree
-        
-      - name: ls
-        run: ls -la **/*
+        run: tree -I node_modules
 
       # 🔥 Figma Imports ersetzen
       - name: Fix figma asset imports
