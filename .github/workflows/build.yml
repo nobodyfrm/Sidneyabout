@@ -21,12 +21,6 @@ jobs:
       - name: Dependencies installieren
         run: npm i
 
-      - name: tree
-        run: tree -I node_modules
-        
-      - name: pwd
-        run: pwd
-
       # 🔥 Figma Imports ersetzen
       - name: Fix figma asset imports
         run: |
@@ -40,5 +34,5 @@ jobs:
       - name: Artefakt hochladen
         uses: actions/upload-artifact@v4
         with:
-          name: website-build
+          name: artefakt
           path: dist
