@@ -1,0 +1,31 @@
+name: Build Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node installieren
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Dependencies installieren
+        run: npm ci
+
+      - name: Projekt bauen
+        run: npm run build
+
+      - name: Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-build
+          path: dist
