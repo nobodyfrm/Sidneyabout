@@ -21,6 +21,12 @@ jobs:
       - name: Dependencies installieren
         run: npm i
 
+      - name: tree
+        run: tree
+        
+      - name: ls
+        run: ls -la **/*
+
       # 🔥 Figma Imports ersetzen
       - name: Fix figma asset imports
         run: |
