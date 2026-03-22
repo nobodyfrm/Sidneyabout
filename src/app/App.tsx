@@ -66,7 +66,7 @@ export default function App() {
       if (loaded === 2) setLoading(false);
     };
 
-    fetch("/data/events.xml")
+    fetch("./data/events.xml")
       .then((r) => r.text())
       .then((text) => {
         const doc = parser.parseFromString(text, "application/xml");
@@ -75,7 +75,7 @@ export default function App() {
       })
       .catch(() => done());
 
-    fetch("/data/social.xml")
+    fetch("./data/social.xml")
       .then((r) => r.text())
       .then((text) => {
         const doc = parser.parseFromString(text, "application/xml");
