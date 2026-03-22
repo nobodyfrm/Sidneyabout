@@ -482,6 +482,16 @@ export function FursuitSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage, timeline]);
 
+  // Auto-scroll to section top when page changes
+  useEffect(() => {
+    const section = document.getElementById("fursuit");
+    if (section) {
+      const offset = 80; // Offset for fixed header
+      const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }, [currentPage]);
+
   return (
     <section
       id="fursuit"

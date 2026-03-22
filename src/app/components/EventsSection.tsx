@@ -64,6 +64,7 @@ interface Props {
 export function EventsSection({ events }: Props) {
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("Alle");
+  const [filterMarked, setFilterMarked] = useState(false);
   const [sortField, setSortField] = useState<SortField>("date");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -86,6 +87,7 @@ export function EventsSection({ events }: Props) {
   const filtered = useMemo(() => {
     return events
       .filter((e) => filterType === "Alle" || e.type === filterType)
+      .filter((e) => !filterMarked || e.isFirst)
       .filter((e) => {
         const q = search.toLowerCase();
         return (
@@ -102,7 +104,7 @@ export function EventsSection({ events }: Props) {
         const cmp = av.localeCompare(bv);
         return sortDir === "asc" ? cmp : -cmp;
       });
-  }, [events, filterType, search, sortField, sortDir]);
+  }, [events, filterType, filterMarked, search, sortField, sortDir]);
 
   // Separate into future and past events
   const futureEvents = useMemo(() => filtered.filter((e) => e.isFuture), [filtered]);
@@ -238,6 +240,18 @@ export function EventsSection({ events }: Props) {
                   </button>
                 );
               })}
+              {/* Marked Events Filter */}
+              <button
+                onClick={() => setFilterMarked(!filterMarked)}
+                className="px-3 py-1 rounded-full text-xs border transition-all"
+                style={
+                  filterMarked
+                    ? { background: "var(--color-primary)", color: "#fff", borderColor: "var(--color-primary)", fontWeight: 700 }
+                    : { background: "var(--color-bg)", color: "var(--color-text-muted)", borderColor: "var(--color-border)" }
+                }
+              >
+                ⭐ Nur markierte
+              </button>
             </div>
 
             {/* View toggle */}
