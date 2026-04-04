@@ -143,6 +143,89 @@
     <isFirst>true</isFirst>
     <firstType>furdance</firstType>
   </event>
+  <event id="22">
+    <date>2026-03-28</date>
+    <dateDisplay>28.03.2026</dateDisplay>
+    <name>Frühlingserwachen auf dem Berg der Drachen</name>
+    <type>Walk</type>
+    <location>Drachenberg, Berlin</location>
+    <city>Berlin</city>
+    <remark>Frühlingserwachen auf dem Berg der Drachen
+🐲 Talia lädt ein zum Gipfelsturm
+📅 SA 28.03.2026 ab 13:30 Uhr 📅
+📍Drachenberg
+Anfahrt: 🚈S3, S5, S9 Heerstraße ➔ 1km laufen
+Treffpunkt: https://maps.app.goo.gl/nuzQB21yxGuSqWtg9 
+Route (ca. 1km): https://maps.app.goo.gl/9mGZLqXgzznbHJb59 
+Restaurant: https://maps.app.goo.gl/LR8tpTTKNZdbUqGg8 📍
+
+🐲 Am letzten Tag der Winterzeit  wollen wir gemeinsam den Drachenberg erklimmen und auf der Spitze den Winter verabschieden. Von dort haben wir eine spektakuläre Sicht über die Hauptstadt sowie auf die verlassene Radarkuppel des Teufelsberg.
+
+🎲 Oben ist auch viel Fläche zum Toben, Filmen und Spaß haben. 
+
+🍜 Anschließen wollen wir gerne mit allen interessierten ins AYCE Restaurant Sakura gehen (19,-€ pro Person, exkl. Trinken). Dort ist Platz für bis zu 40 Hungrige Furries. Wenn Ihr einen Platz wollt, meldet euch bitte zeitnah und verbindlich an!
+
+🕒 Ablauf
+13:30 Uhr Treffen
+14:00 Uhr Start
+16:30 Uhr geplante Rückkehr
+17:30 Uhr Futtern (Optional)
+
+🚰 Wir haben einen Bollerwagen mit Getränken dabei. Zum lagern gibt es Platz in Autos. Bringt bitte weiche Taschen mit. 
+ 
+⚠️ Keine öffentlichen Toiletten und geschlossene Umkleidekabinen, da dies eine öffentliche Grünfläche / Waldfläche ist. 
+
+⛈ Der Walk findet nur bei gutem Wetter statt. Bei Regen oder Unwetter wird dieser abgesagt.
+
+Mit drachigen Grüßen
+
+Talia & Whootwolf
+
+🎟 Anmeldung: events.bbfurry.de (https://events.bbfurry.de/events/Berg-der-Drachen-26)
+👥 Kontaktfur: @Whootwolf</remark>
+  </event>
+  <event id="Easter2026">
+    <date>2026-04-05</date>
+    <dateDisplay>05.04.2026</dateDisplay>
+    <name>Fursuitwalk zu Ostern im Treptower Park</name>
+    <type>Walk</type>
+    <location>Treptower Park, Auf dem Parkplatz an der Insel der Jugend, Bulgarische Str. 22-60, 12435 Berlin</location>
+    <city>Berlin</city>
+    <remark>Fursuitwalk zu Ostern im Treptower Park
+🌼 mit Ostereiersuche 🌼
+📅 SO 05.04.2026 ab 14:00 Uhr 📅
+📍 Auf dem Parkplatz an der Insel der Jugend
+Bulgarische Str. 22-60 
+12435 Berlin 
+Anfahrt: 🚌 165, 166, 256 bis Bulgarische Str.
+🅿️ Weitere Parkplätze am Rathaus Treptow 📍
+
+🌷 Programm 🌷
+14:00 Uhr Treffen
+14:20 Uhr Start des Walk
+15:20 Uhr Rückkehr & Picknick
+
+🌸 Der kleine Oster-Suitwalk - Vom Weltspielplatz geht es zum Sommerblumengarten und wieder zurück zum Weltspielplatz.
+🌼 Parallel dazu suchen wir die Eier des Osterhasen 🐇
+
+🪷 Nach dem Walk gibt es ein kleines Picknick mit Keksen und Getränken, wer mag kann auch was kleines beisteuern. 
+
+🌸 Umkleide, Bollerwagen für Gepäck, Wasser stehen zur Verfügung, WC im Park.
+🌼 An Fursuiter ohne Auto: Bringt bitte weiche Taschen mit damit die in den Bollerwagen passen. Für großes Gepäck bitte ich alle Autofahrer um Mithilfe beim verstauen der Sachen
+
+🅿️ Weitere Parkplätze:
+Rathaus Treptow 
+Neue Krugallee 2-6
+12435 Berlin 
+
+🍄🌾🍀🌼🌷🌻🌾🌸☘️🍄
+🌸 Freue mich auf euch! 🌼
+
+🌼 Puschel 🌸
+👥 Kontaktfur: @Puschelwuschel</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
   <event id="14">
     <date>2026-04-11</date>
     <dateDisplay>11.04.2026 – 12.04.2026</dateDisplay>
@@ -240,46 +323,5 @@
     <city>Berlin</city>
     <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
     <isFirst>false</isFirst>
-  </event>
-  <event id="22">
-    <date>2026-03-28</date>
-    <dateDisplay>28.03.2026</dateDisplay>
-    <name>Frühlingserwachen auf dem Berg der Drachen</name>
-    <type>Walk</type>
-    <location>Drachenberg, Berlin</location>
-    <city>Berlin</city>
-    <remark>Frühlingserwachen auf dem Berg der Drachen
-🐲 Talia lädt ein zum Gipfelsturm
-📅 SA 28.03.2026 ab 13:30 Uhr 📅
-📍Drachenberg
-Anfahrt: 🚈S3, S5, S9 Heerstraße ➔ 1km laufen
-Treffpunkt: https://maps.app.goo.gl/nuzQB21yxGuSqWtg9 
-Route (ca. 1km): https://maps.app.goo.gl/9mGZLqXgzznbHJb59 
-Restaurant: https://maps.app.goo.gl/LR8tpTTKNZdbUqGg8 📍
-
-🐲 Am letzten Tag der Winterzeit  wollen wir gemeinsam den Drachenberg erklimmen und auf der Spitze den Winter verabschieden. Von dort haben wir eine spektakuläre Sicht über die Hauptstadt sowie auf die verlassene Radarkuppel des Teufelsberg.
-
-🎲 Oben ist auch viel Fläche zum Toben, Filmen und Spaß haben. 
-
-🍜 Anschließen wollen wir gerne mit allen interessierten ins AYCE Restaurant Sakura gehen (19,-€ pro Person, exkl. Trinken). Dort ist Platz für bis zu 40 Hungrige Furries. Wenn Ihr einen Platz wollt, meldet euch bitte zeitnah und verbindlich an!
-
-🕒 Ablauf
-13:30 Uhr Treffen
-14:00 Uhr Start
-16:30 Uhr geplante Rückkehr
-17:30 Uhr Futtern (Optional)
-
-🚰 Wir haben einen Bollerwagen mit Getränken dabei. Zum lagern gibt es Platz in Autos. Bringt bitte weiche Taschen mit. 
- 
-⚠️ Keine öffentlichen Toiletten und geschlossene Umkleidekabinen, da dies eine öffentliche Grünfläche / Waldfläche ist. 
-
-⛈ Der Walk findet nur bei gutem Wetter statt. Bei Regen oder Unwetter wird dieser abgesagt.
-
-Mit drachigen Grüßen
-
-Talia & Whootwolf
-
-🎟 Anmeldung: events.bbfurry.de (https://events.bbfurry.de/events/Berg-der-Drachen-26)
-👥 Kontaktfur: @Whootwolf</remark>
   </event>
 </events>
