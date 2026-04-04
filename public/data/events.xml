@@ -324,4 +324,24 @@ Neue Krugallee 2-6
     <remark>Regelmäßige Party bei Respawn im METRONOM Berlin.</remark>
     <isFirst>false</isFirst>
   </event>
+  <event id="NFC2027">
+    <date>2027-02-24</date>
+    <dateDisplay>24.02.2027 – 28.02.2027</dateDisplay>
+    <name>NFC – Nordic Fuzz Con 2027</name>
+    <type>Convention</type>
+    <location>Malmö, Schweden</location>
+    <city>Malmö</city>
+    <remark>Nordic Fuzz Con 2027 – Crime Noir Edition 🎭
+
+Die zweite NFC für mich! Das Motto "Crime Noir" verspricht eine düstere, mysteriöse Atmosphäre voller Spannung und Intrigen.
+
+🕵️ Motto: Crime Noir
+📅 24. – 28. Februar 2027
+📍 Malmö, Schweden
+🌐 https://nordicfuzzcon.org/
+
+Eine ganze Woche skandinavische Furry-Magie mit detektivischem Flair!</remark>
+    <isFirst>false</isFirst>
+    <isFuture>true</isFuture>
+  </event>
 </events>
