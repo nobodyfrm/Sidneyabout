@@ -29,7 +29,8 @@
     <location>Berliner Innenstadt</location>
     <city>Berlin</city>
     <remark>Nachtspaziergang durch die farbenprächtigen Lichtinstallationen des Berliner Festival of Lights.</remark>
-    <isFirst>false</isFirst>
+    <isFirst>true</isFirst>
+    <firstType>walk</firstType>
   </event>
   <event id="4">
     <date>2025-10-18</date>
