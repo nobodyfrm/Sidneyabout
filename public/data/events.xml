@@ -19,7 +19,8 @@
     <location>Schlosspark Sanssouci, Potsdam</location>
     <city>Potsdam</city>
     <remark>Wunderschöner Spaziergang durch den historischen Schlosspark Sanssouci in Potsdam.</remark>
-    <isFirst>false</isFirst>
+    <isFirst>true</isFirst>
+    <firstType>walk</firstType>
   </event>
   <event id="3">
     <date>2025-10-13</date>
@@ -29,8 +30,7 @@
     <location>Berliner Innenstadt</location>
     <city>Berlin</city>
     <remark>Nachtspaziergang durch die farbenprächtigen Lichtinstallationen des Berliner Festival of Lights.</remark>
-    <isFirst>true</isFirst>
-    <firstType>walk</firstType>
+    <isFirst>false</isFirst>
   </event>
   <event id="4">
     <date>2025-10-18</date>

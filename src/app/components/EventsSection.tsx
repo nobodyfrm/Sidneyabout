@@ -581,7 +581,7 @@ function EventsTable({
                           borderColor: "rgba(46,125,50,0.3)",
                         }}
                       >
-                        ⭐ {event.firstType === "convention" ? "Erste Convention" : event.firstType === "furdance" ? "Erster Furdance" : "Erstes Event"}
+                        ⭐ {event.firstType === "convention" ? "Erste Convention" : event.firstType === "furdance" ? "Erster Furdance" : event.firstType === "walk" ? "Erster Walk" : "Erstes Event"}
                       </span>
                     )}
                     {event.attendance === "maybe" && (
