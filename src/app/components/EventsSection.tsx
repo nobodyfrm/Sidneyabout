@@ -727,7 +727,7 @@ function EventCard({
                   fontWeight: 600,
                 }}
               >
-                ⭐ {event.firstType === "convention" ? "Erste Convention" : event.firstType === "furdance" ? "Erster Furdance" : "Erstes Event"}
+                ⭐ {event.firstType === "convention" ? "Erste Convention" : event.firstType === "furdance" ? "Erster Furdance" : event.firstType === "walk" ? "Erster Walk" : "Erstes Event"}
               </span>
             )}
             {event.attendance === "maybe" && (
