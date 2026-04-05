@@ -1,0 +1,57 @@
+name: Build Website
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+jobs:
+  build:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+      
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v5
+
+      - name: Node installieren
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Dependencies installieren
+        run: npm i
+
+      # 🔥 Figma Imports ersetzen
+      - name: Fix figma asset imports
+        run: |
+          find src -type f -name "*.ts" -o -name "*.tsx" | while read file; do
+            sed -i 's|figma:asset/|../../assets/|g' "$file"
+          done
+
+      - name: Projekt bauen
+        run: npm run build
+
+      - name: Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: artefakt
+          path: dist
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Artifact to Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          # upload entire directory
+          path: dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
