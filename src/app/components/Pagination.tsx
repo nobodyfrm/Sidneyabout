@@ -48,21 +48,52 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="flex items-center justify-center gap-1 mt-6">
-      {/* First page */}
-      <button
-        onClick={() => onPageChange(1)}
-        disabled={currentPage === 1}
-        className="p-2 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-        style={{
-          background: "var(--color-bg)",
-          borderColor: "var(--color-border)",
-          color: "var(--color-text-muted)",
-        }}
-        title="Erste Seite"
-      >
-        <ChevronsLeft size={14} />
-      </button>
+    <div className="flex flex-col items-center gap-3 mt-6">
+      {/* Page selector dropdown */}
+      <div className="flex items-center gap-2">
+        <label
+          htmlFor="page-select"
+          className="text-xs"
+          style={{ color: "var(--color-text-muted)" }}
+        >
+          Gehe zu Seite:
+        </label>
+        <select
+          id="page-select"
+          value={currentPage}
+          onChange={(e) => onPageChange(Number(e.target.value))}
+          className="px-3 py-2 rounded-lg text-xs transition-all border"
+          style={{
+            background: "var(--color-bg)",
+            color: "var(--color-text)",
+            borderColor: "var(--color-border)",
+            fontWeight: 600,
+          }}
+        >
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <option key={page} value={page}>
+              Seite {page} von {totalPages}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Pagination controls */}
+      <div className="flex items-center justify-center gap-1">
+        {/* First page */}
+        <button
+          onClick={() => onPageChange(1)}
+          disabled={currentPage === 1}
+          className="p-2 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          style={{
+            background: "var(--color-bg)",
+            borderColor: "var(--color-border)",
+            color: "var(--color-text-muted)",
+          }}
+          title="Erste Seite"
+        >
+          <ChevronsLeft size={14} />
+        </button>
 
       {/* Previous page */}
       <button
@@ -146,6 +177,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
       >
         <ChevronsRight size={14} />
       </button>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Sparkles } from "lucide-react";
+import { Pagination } from "./Pagination";
 import img1 from "figma:asset/0f605921e0eb8666633a71da8fc8b6b510f44af6.png";
 import img2 from "figma:asset/33989908c365674362159e717b4e232a0a8f5335.png";
 import img3 from "figma:asset/c6530cbf108d97c7e43634c110fb5f305fd0f983.png";
@@ -60,6 +61,9 @@ export function FursuitSection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  // Ref to track initial render
+  const isInitialRender = useRef(true);
 
   // Dummy data for timeline - user will replace images later
   const timeline = [
@@ -482,8 +486,12 @@ export function FursuitSection() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage, timeline]);
 
-  // Auto-scroll to section top when page changes
+  // Auto-scroll to section top when page changes (but not on initial render)
   useEffect(() => {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
     const section = document.getElementById("fursuit");
     if (section) {
       const offset = 80; // Offset for fixed header
@@ -622,45 +630,13 @@ export function FursuitSection() {
         </div>
 
         {/* Pagination */}
-        <div className="flex flex-col items-center gap-4 mt-10">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="px-6 py-3 rounded-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              style={{
-                background: currentPage === 1 ? "var(--color-border)" : "var(--color-primary)",
-                color: "white",
-                fontWeight: 600,
-              }}
-            >
-              ← Vorherige
-            </button>
-            <div
-              className="px-4 py-2 rounded-lg"
-              style={{
-                background: "var(--color-card-bg)",
-                color: "var(--color-text)",
-                fontWeight: 600,
-                border: "1px solid var(--color-border)",
-              }}
-            >
-              Seite {currentPage} von {totalPages}
-            </div>
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="px-6 py-3 rounded-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              style={{
-                background: currentPage === totalPages ? "var(--color-border)" : "var(--color-primary)",
-                color: "white",
-                fontWeight: 600,
-              }}
-            >
-              Nächste →
-            </button>
-          </div>
-          <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+        <div className="mt-10">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+          <p className="text-xs text-center mt-3" style={{ color: "var(--color-text-muted)" }}>
             Zeige {(currentPage - 1) * itemsPerPage + 1}–{Math.min(currentPage * itemsPerPage, timeline.length)} von {timeline.length} Bildern
           </p>
         </div>
