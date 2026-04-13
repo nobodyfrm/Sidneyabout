@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Search, X, ChevronDown, LayoutGrid, List } from "lucide-react";
 import {
   Collapsible,
@@ -69,15 +69,19 @@ export function EventsSection({ events }: Props) {
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"cards" | "table">("cards");
-  
+
   // Collapsible state for sections
   const [futureExpanded, setFutureExpanded] = useState(true);
   const [pastExpanded, setPastExpanded] = useState(true);
-  
+
   // Pagination state - separate for future and past events
   const [futureCurrentPage, setFutureCurrentPage] = useState(1);
   const [pastCurrentPage, setPastCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 10;
+
+  // Refs to track initial render
+  const isFutureInitialRender = useRef(true);
+  const isPastInitialRender = useRef(true);
 
   const types = useMemo(() => {
     const all = Array.from(new Set(events.map((e) => e.type)));
@@ -115,6 +119,34 @@ export function EventsSection({ events }: Props) {
     setFutureCurrentPage(1);
     setPastCurrentPage(1);
   }, [search, filterType, sortField, sortDir]);
+
+  // Scroll to future events section when page changes
+  useEffect(() => {
+    if (isFutureInitialRender.current) {
+      isFutureInitialRender.current = false;
+      return;
+    }
+    const section = document.getElementById("future-events-section");
+    if (section) {
+      const offset = 80; // Offset for fixed header
+      const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }, [futureCurrentPage]);
+
+  // Scroll to past events section when page changes
+  useEffect(() => {
+    if (isPastInitialRender.current) {
+      isPastInitialRender.current = false;
+      return;
+    }
+    const section = document.getElementById("past-events-section");
+    if (section) {
+      const offset = 80; // Offset for fixed header
+      const top = section.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  }, [pastCurrentPage]);
 
   // Paginated events
   const paginatedFutureEvents = useMemo(() => {
@@ -344,7 +376,7 @@ export function EventsSection({ events }: Props) {
 
         {/* ── FUTURE EVENTS SECTION ── */}
         {futureEvents.length > 0 && (
-          <div className="mb-12">
+          <div id="future-events-section" className="mb-12">
             <Collapsible open={futureExpanded} onOpenChange={setFutureExpanded}>
               <CollapsibleTrigger asChild>
                 <button
@@ -396,7 +428,7 @@ export function EventsSection({ events }: Props) {
 
         {/* ── PAST EVENTS SECTION ── */}
         {pastEvents.length > 0 && (
-          <div>
+          <div id="past-events-section">
             <Collapsible open={pastExpanded} onOpenChange={setPastExpanded}>
               <CollapsibleTrigger asChild>
                 <button
